@@ -1,0 +1,35 @@
+{
+  "simulated": true,
+  "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+  "note": "v0 hand-shaped personas. expected_flag is the intent, not yet verified against the detector.",
+  "personas": [
+    {
+      "id": "regular",
+      "file": "regular.json",
+      "expected_flag": "none",
+      "first_abnormal_cycle": null,
+      "intended_flag_by_cycle": null
+    },
+    {
+      "id": "pcos_pattern",
+      "file": "pcos_pattern.json",
+      "expected_flag": "pcos_pattern",
+      "first_abnormal_cycle": 6,
+      "intended_flag_by_cycle": 8
+    },
+    {
+      "id": "anemia_pattern",
+      "file": "anemia_pattern.json",
+      "expected_flag": "anemia_pattern",
+      "first_abnormal_cycle": 6,
+      "intended_flag_by_cycle": 8
+    },
+    {
+      "id": "thyroid_pattern",
+      "file": "thyroid_pattern.json",
+      "expected_flag": "thyroid_pattern",
+      "first_abnormal_cycle": 6,
+      "intended_flag_by_cycle": 8
+    }
+  ]
+}

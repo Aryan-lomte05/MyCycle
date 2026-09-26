@@ -1,0 +1,14 @@
+{
+  "cycle_index": 8,
+  "flag": "pcos_pattern",
+  "score": 3.1,
+  "confidence": "high",
+  "contributing_signals": [
+    "cycle_length_high",
+    "acne_high",
+    "excess_hair_high"
+  ],
+  "message_key": "flag.pcos_pattern.v1",
+  "detector": "cusum",
+  "simulated": true
+}

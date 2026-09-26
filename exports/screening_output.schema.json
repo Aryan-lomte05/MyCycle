@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Screening output object (contract 5.2)",
+  "type": "object",
+  "required": ["cycle_index", "flag", "score", "confidence", "contributing_signals", "message_key", "detector", "simulated"],
+  "additionalProperties": false,
+  "properties": {
+    "cycle_index": {"type": "integer", "minimum": 1},
+    "flag": {"enum": ["none", "irregularity", "pcos_pattern", "anemia_pattern", "thyroid_pattern"]},
+    "score": {"type": "number", "minimum": 0},
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "contributing_signals": {"type": "array", "items": {"type": "string"}},
+    "message_key": {"type": "string", "pattern": "^flag\\.[a-z_]+\\.v\\d+$"},
+    "detector": {"enum": ["zscore", "cusum", "gru"]},
+    "simulated": {"type": "boolean"}
+  }
+}

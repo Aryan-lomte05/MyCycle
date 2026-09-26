@@ -1,0 +1,7 @@
+pytest
+jsonschema
+python-pptx
+numpy
+pandas
+pyarrow
+scikit-learn

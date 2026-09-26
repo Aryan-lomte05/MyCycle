@@ -1,0 +1,15 @@
+{
+  "cycle_index": 8,
+  "flag": "thyroid_pattern",
+  "score": 2.6,
+  "confidence": "medium",
+  "contributing_signals": [
+    "cycle_length_low",
+    "fatigue_high",
+    "weight_change_high",
+    "mood_high"
+  ],
+  "message_key": "flag.thyroid_pattern.v1",
+  "detector": "cusum",
+  "simulated": true
+}

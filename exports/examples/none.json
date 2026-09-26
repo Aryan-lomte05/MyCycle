@@ -1,0 +1,10 @@
+{
+  "cycle_index": 14,
+  "flag": "none",
+  "score": 0.4,
+  "confidence": "low",
+  "contributing_signals": [],
+  "message_key": "flag.none.v1",
+  "detector": "zscore",
+  "simulated": true
+}

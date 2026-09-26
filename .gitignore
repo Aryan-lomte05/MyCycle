@@ -1,0 +1,33 @@
+# raw data and secrets never go in the repo
+data/raw/*
+!data/raw/.gitkeep
+.env
+*.pem
+kaggle.json
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# node
+node_modules/
+.next/
+out/
+
+# large model files (fetched by a documented script)
+app/public/models/
+
+# large generated artifacts
+results/sim/*.parquet
+*.onnx.tmp
+*.tflite.tmp
+
+# os and editor
+.DS_Store
+.idea/
+.vscode/
+
+# verbatim source dumps contain un-anonymized interview details (CLAUDE.md rule 8); kept local until redacted
+docs/source/

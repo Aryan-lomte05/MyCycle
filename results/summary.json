@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "schema_version": 1,
+    "run_id": "placeholder-0",
+    "git_commit": "none",
+    "seed": 42,
+    "generated_at": "2026-09-26T19:00:00+05:30",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "placeholder": true
+  },
+  "datasets": [
+    {"id": "kaggle_pcos", "n_rows": 0, "n_features_used": 0, "label_definition": "PLACEHOLDER", "placeholder": true},
+    {"id": "simulator", "n_rows": 0, "n_features_used": 0, "label_definition": "PLACEHOLDER", "placeholder": true}
+  ],
+  "classifiers": [
+    {"dataset": "kaggle_pcos", "model": "xgboost", "feature_set": "symptom_only", "auc_mean": 0.0, "auc_ci_low": 0.0, "auc_ci_high": 0.0, "sens_at_90spec": 0.0, "spec_at_90sens": 0.0, "brier": 0.0, "n_folds": 5, "placeholder": true}
+  ],
+  "federated": [
+    {"mode": "centralized", "noise_multiplier": 0.0, "clip_norm": 1.0, "epsilon": null, "delta": 1e-5, "auc": 0.0, "accuracy": 0.0, "rounds": 0, "non_iid": true, "placeholder": true},
+    {"mode": "local_only", "noise_multiplier": 0.0, "clip_norm": 1.0, "epsilon": null, "delta": 1e-5, "auc": 0.0, "accuracy": 0.0, "rounds": 0, "non_iid": true, "placeholder": true},
+    {"mode": "fedavg", "noise_multiplier": 0.0, "clip_norm": 1.0, "epsilon": null, "delta": 1e-5, "auc": 0.0, "accuracy": 0.0, "rounds": 0, "non_iid": true, "placeholder": true},
+    {"mode": "fedavg_dp", "noise_multiplier": 1.0, "clip_norm": 1.0, "epsilon": null, "delta": 1e-5, "auc": 0.0, "accuracy": 0.0, "rounds": 0, "non_iid": true, "placeholder": true}
+  ],
+  "baseline_detection": [
+    {"detector": "fixed_threshold", "drift_type": "pcos", "detection_rate": 0.0, "median_delay_cycles": 0.0, "false_alarms_per_100_cycles": 0.0, "placeholder": true},
+    {"detector": "zscore", "drift_type": "pcos", "detection_rate": 0.0, "median_delay_cycles": 0.0, "false_alarms_per_100_cycles": 0.0, "placeholder": true},
+    {"detector": "cusum", "drift_type": "pcos", "detection_rate": 0.0, "median_delay_cycles": 0.0, "false_alarms_per_100_cycles": 0.0, "placeholder": true}
+  ],
+  "ondevice": {
+    "model_size_kb": 0.0,
+    "inference_latency_ms_p50": 0.0,
+    "inference_latency_ms_p95": 0.0,
+    "peak_memory_mb": 0.0,
+    "device": "PLACEHOLDER",
+    "parity_max_abs_diff": 0.0,
+    "placeholder": true
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MyCycle results summary, schema version 1",
+  "type": "object",
+  "required": ["meta", "datasets", "classifiers", "federated", "baseline_detection", "ondevice"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["schema_version", "run_id", "git_commit", "seed", "generated_at", "simulated", "label"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "run_id": {"type": "string"},
+        "git_commit": {"type": "string"},
+        "seed": {"type": "integer"},
+        "generated_at": {"type": "string"},
+        "simulated": {"const": true},
+        "label": {"const": "Simulated / preliminary, public and synthetic data, not real deployment data"},
+        "placeholder": {"type": "boolean"}
+      }
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "n_rows", "n_features_used", "label_definition"],
+        "properties": {
+          "id": {"type": "string"},
+          "n_rows": {"type": "integer", "minimum": 0},
+          "n_features_used": {"type": "integer", "minimum": 0},
+          "label_definition": {"type": "string"},
+          "placeholder": {"type": "boolean"}
+        }
+      }
+    },
+    "classifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["dataset", "model", "feature_set", "auc_mean", "auc_ci_low", "auc_ci_high", "sens_at_90spec", "spec_at_90sens", "brier", "n_folds"],
+        "properties": {
+          "dataset": {"type": "string"},
+          "model": {"type": "string"},
+          "feature_set": {"enum": ["symptom_only", "symptom_plus_vitals", "with_labs_reference"]},
+          "auc_mean": {"type": "number", "minimum": 0, "maximum": 1},
+          "auc_ci_low": {"type": "number", "minimum": 0, "maximum": 1},
+          "auc_ci_high": {"type": "number", "minimum": 0, "maximum": 1},
+          "sens_at_90spec": {"type": "number", "minimum": 0, "maximum": 1},
+          "spec_at_90sens": {"type": "number", "minimum": 0, "maximum": 1},
+          "brier": {"type": "number", "minimum": 0, "maximum": 1},
+          "n_folds": {"type": "integer", "minimum": 1},
+          "placeholder": {"type": "boolean"}
+        }
+      }
+    },
+    "federated": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["mode", "noise_multiplier", "clip_norm", "epsilon", "delta", "auc", "accuracy", "rounds", "non_iid"],
+        "properties": {
+          "mode": {"enum": ["centralized", "local_only", "fedavg", "fedavg_dp", "fedprox", "fedper"]},
+          "noise_multiplier": {"type": "number", "minimum": 0},
+          "clip_norm": {"type": "number", "exclusiveMinimum": 0},
+          "epsilon": {"type": ["number", "null"]},
+          "delta": {"type": "number", "exclusiveMinimum": 0},
+          "auc": {"type": "number", "minimum": 0, "maximum": 1},
+          "accuracy": {"type": "number", "minimum": 0, "maximum": 1},
+          "rounds": {"type": "integer", "minimum": 0},
+          "non_iid": {"type": "boolean"},
+          "placeholder": {"type": "boolean"}
+        }
+      }
+    },
+    "baseline_detection": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["detector", "drift_type", "detection_rate", "median_delay_cycles", "false_alarms_per_100_cycles"],
+        "properties": {
+          "detector": {"enum": ["fixed_threshold", "zscore", "ewma", "cusum", "isolation_forest", "gru", "lstm", "cnn1d"]},
+          "drift_type": {"enum": ["pcos", "anemia", "thyroid", "benign_shift"]},
+          "detection_rate": {"type": "number", "minimum": 0, "maximum": 1},
+          "median_delay_cycles": {"type": "number", "minimum": 0},
+          "false_alarms_per_100_cycles": {"type": "number", "minimum": 0},
+          "placeholder": {"type": "boolean"}
+        }
+      }
+    },
+    "ondevice": {
+      "type": "object",
+      "required": ["model_size_kb", "inference_latency_ms_p50", "inference_latency_ms_p95", "peak_memory_mb", "device", "parity_max_abs_diff"],
+      "properties": {
+        "model_size_kb": {"type": "number", "minimum": 0},
+        "inference_latency_ms_p50": {"type": "number", "minimum": 0},
+        "inference_latency_ms_p95": {"type": "number", "minimum": 0},
+        "peak_memory_mb": {"type": "number", "minimum": 0},
+        "device": {"type": "string"},
+        "parity_max_abs_diff": {"type": "number", "minimum": 0},
+        "placeholder": {"type": "boolean"}
+      }
+    }
+  }
+}

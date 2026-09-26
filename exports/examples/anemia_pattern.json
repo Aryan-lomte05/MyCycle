@@ -1,0 +1,15 @@
+{
+  "cycle_index": 8,
+  "flag": "anemia_pattern",
+  "score": 2.8,
+  "confidence": "high",
+  "contributing_signals": [
+    "flow_high",
+    "fatigue_high",
+    "dizziness_high",
+    "pallor_high"
+  ],
+  "message_key": "flag.anemia_pattern.v1",
+  "detector": "zscore",
+  "simulated": true
+}

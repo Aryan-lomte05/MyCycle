@@ -1,0 +1,12 @@
+{
+  "cycle_index": 9,
+  "flag": "irregularity",
+  "score": 2.3,
+  "confidence": "medium",
+  "contributing_signals": [
+    "cycle_length_high"
+  ],
+  "message_key": "flag.irregularity.v1",
+  "detector": "zscore",
+  "simulated": true
+}
