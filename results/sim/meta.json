@@ -1,7 +1,7 @@
 {
   "meta": {
     "seed": 42,
-    "git_commit": "660b039e8a61b7b814bb73f7d6e71c15e1b309f4-dirty",
+    "git_commit": "cd70ceebe318504f749a921251a4fe0e586cee76",
     "simulated": true,
     "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
     "generator": "sim/simulator.py",
