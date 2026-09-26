@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "seed": 42,
+    "git_commit": "660b039e8a61b7b814bb73f7d6e71c15e1b309f4-dirty",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "generator": "sim/simulator.py",
+    "n_users": 3000,
+    "class_mix": {
+      "none": 0.25,
+      "pcos_pattern": 0.2,
+      "anemia_pattern": 0.2,
+      "thyroid_pattern": 0.2,
+      "benign_shift": 0.15
+    },
+    "split_fractions": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "missing_rate": 0.02
+  },
+  "counts": {
+    "users_by_split": {
+      "train": 1800,
+      "val": 600,
+      "test": 600
+    },
+    "users_by_drift": {
+      "none": 750,
+      "pcos_pattern": 600,
+      "anemia_pattern": 600,
+      "thyroid_pattern": 600,
+      "benign_shift": 450
+    },
+    "cycles_by_split": {
+      "train": 41526,
+      "val": 13874,
+      "test": 13917
+    }
+  },
+  "marginals": {
+    "baseline_cycle_length_mean": 29.0523,
+    "baseline_cycle_length_sd": 3.219,
+    "baseline_within_user_sd_median": 1.8509,
+    "baseline_share_outside_24_38": 0.0455
+  }
+}
