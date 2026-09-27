@@ -1,0 +1,1084 @@
+{
+  "meta": {
+    "seed": 42,
+    "git_commit": "6a95883dfab65b3907295bf9c5bfd89487afa42e-dirty",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "simulator_seed": 42,
+    "simulator_commit": "cd70ceebe318504f749a921251a4fe0e586cee76",
+    "tuned_on": "val",
+    "evaluated_on": "test",
+    "fa_budget_per_100_cycles": 5.0,
+    "objective": "max mean detection rate over pcos, anemia, thyroid on val, subject to overall false alarms <= budget",
+    "definitions": "(per drift type, test split, one user = one sequence):\n  non-drift cycle         drift_active is false (none users, cycles before onset, cycles after a benign shift ended)\n  false_alarms_per_100    100 * flagged non-drift cycles / non-drift cycles (any flag other than none)\n  detection_rate          pattern drifts: share of users with any flag at or after onset\n                          benign_shift: share of users flagged during the shifted cycles\n  median_delay_cycles     median of (first flagged cycle at or after onset) - onset, over detected users\n  correct_pattern_rate    share of users given the correct pattern flag at or after onset\n  persistent_flag_rate    benign_shift: share of users flagged on 2 or more cycles after the shift ended\n  pattern_flag_rate       benign_shift: share of users given any pattern flag at or after onset"
+  },
+  "chosen": {
+    "fixed_threshold": {
+      "params": {},
+      "fa_budget_met_on_val": true,
+      "val_metrics": {
+        "overall": {
+          "false_alarms_per_100_cycles": 3.3702,
+          "n_non_drift_cycles": 7774,
+          "n_users": 600
+        },
+        "anemia_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 4.7912,
+          "detection_rate": 1.0,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 1.0,
+          "median_pattern_delay_cycles": 1.0
+        },
+        "benign_shift": {
+          "n_users": 90,
+          "false_alarms_per_100_cycles": 2.5722,
+          "detection_rate": 0.7333,
+          "median_delay_cycles": 0.0,
+          "persistent_flag_rate": 0.0778,
+          "pattern_flag_rate": 0.5778
+        },
+        "none": {
+          "n_users": 150,
+          "false_alarms_per_100_cycles": 3.4219,
+          "users_with_any_flag_rate": 0.3267
+        },
+        "pcos_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 2.8986,
+          "detection_rate": 1.0,
+          "median_delay_cycles": 0.0,
+          "correct_pattern_rate": 1.0,
+          "median_pattern_delay_cycles": 1.0
+        },
+        "thyroid_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 4.0789,
+          "detection_rate": 0.925,
+          "median_delay_cycles": 2.0,
+          "correct_pattern_rate": 0.8333,
+          "median_pattern_delay_cycles": 2.0
+        }
+      }
+    },
+    "zscore": {
+      "params": {
+        "threshold": 3.5
+      },
+      "fa_budget_met_on_val": true,
+      "val_metrics": {
+        "overall": {
+          "false_alarms_per_100_cycles": 2.8042,
+          "n_non_drift_cycles": 7774,
+          "n_users": 600
+        },
+        "anemia_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 2.3342,
+          "detection_rate": 0.4167,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 0.2,
+          "median_pattern_delay_cycles": 1.0
+        },
+        "benign_shift": {
+          "n_users": 90,
+          "false_alarms_per_100_cycles": 2.3097,
+          "detection_rate": 0.8111,
+          "median_delay_cycles": 0.0,
+          "persistent_flag_rate": 0.0778,
+          "pattern_flag_rate": 0.5889
+        },
+        "none": {
+          "n_users": 150,
+          "false_alarms_per_100_cycles": 3.1391,
+          "users_with_any_flag_rate": 0.4067
+        },
+        "pcos_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 2.7668,
+          "detection_rate": 0.9333,
+          "median_delay_cycles": 0.0,
+          "correct_pattern_rate": 0.9083,
+          "median_pattern_delay_cycles": 1.0
+        },
+        "thyroid_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 3.0263,
+          "detection_rate": 0.6667,
+          "median_delay_cycles": 0.0,
+          "correct_pattern_rate": 0.6167,
+          "median_pattern_delay_cycles": 1.0
+        }
+      }
+    },
+    "ewma": {
+      "params": {
+        "L": 3.5
+      },
+      "fa_budget_met_on_val": true,
+      "val_metrics": {
+        "overall": {
+          "false_alarms_per_100_cycles": 3.5374,
+          "n_non_drift_cycles": 7774,
+          "n_users": 600
+        },
+        "anemia_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 1.1057,
+          "detection_rate": 0.8333,
+          "median_delay_cycles": 3.0,
+          "correct_pattern_rate": 0.8083,
+          "median_pattern_delay_cycles": 3.0
+        },
+        "benign_shift": {
+          "n_users": 90,
+          "false_alarms_per_100_cycles": 8.5039,
+          "detection_rate": 0.6111,
+          "median_delay_cycles": 0.0,
+          "persistent_flag_rate": 0.3667,
+          "pattern_flag_rate": 0.1778
+        },
+        "none": {
+          "n_users": 150,
+          "false_alarms_per_100_cycles": 2.6867,
+          "users_with_any_flag_rate": 0.2267
+        },
+        "pcos_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.7905,
+          "detection_rate": 0.9917,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 0.9833,
+          "median_pattern_delay_cycles": 2.0
+        },
+        "thyroid_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.3947,
+          "detection_rate": 0.975,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 0.975,
+          "median_pattern_delay_cycles": 2.0
+        }
+      }
+    },
+    "cusum": {
+      "params": {
+        "h": 8.0
+      },
+      "fa_budget_met_on_val": true,
+      "val_metrics": {
+        "overall": {
+          "false_alarms_per_100_cycles": 4.6694,
+          "n_non_drift_cycles": 7774,
+          "n_users": 600
+        },
+        "anemia_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.0,
+          "detection_rate": 0.9083,
+          "median_delay_cycles": 4.0,
+          "correct_pattern_rate": 0.8917,
+          "median_pattern_delay_cycles": 4.0
+        },
+        "benign_shift": {
+          "n_users": 90,
+          "false_alarms_per_100_cycles": 14.8031,
+          "detection_rate": 0.3,
+          "median_delay_cycles": 0.0,
+          "persistent_flag_rate": 0.3222,
+          "pattern_flag_rate": 0.0333
+        },
+        "none": {
+          "n_users": 150,
+          "false_alarms_per_100_cycles": 2.2907,
+          "users_with_any_flag_rate": 0.1533
+        },
+        "pcos_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.0,
+          "detection_rate": 1.0,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 0.9833,
+          "median_pattern_delay_cycles": 4.0
+        },
+        "thyroid_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.0,
+          "detection_rate": 1.0,
+          "median_delay_cycles": 2.5,
+          "correct_pattern_rate": 0.9833,
+          "median_pattern_delay_cycles": 4.0
+        }
+      }
+    },
+    "isolation_forest": {
+      "params": {
+        "threshold": 0.5
+      },
+      "fa_budget_met_on_val": true,
+      "val_metrics": {
+        "overall": {
+          "false_alarms_per_100_cycles": 1.7494,
+          "n_non_drift_cycles": 7774,
+          "n_users": 600
+        },
+        "anemia_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.3686,
+          "detection_rate": 0.7667,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 0.5833,
+          "median_pattern_delay_cycles": 1.0
+        },
+        "benign_shift": {
+          "n_users": 90,
+          "false_alarms_per_100_cycles": 0.8399,
+          "detection_rate": 0.4111,
+          "median_delay_cycles": 0.0,
+          "persistent_flag_rate": 0.0222,
+          "pattern_flag_rate": 0.4444
+        },
+        "none": {
+          "n_users": 150,
+          "false_alarms_per_100_cycles": 3.0543,
+          "users_with_any_flag_rate": 0.5
+        },
+        "pcos_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.2635,
+          "detection_rate": 0.8833,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 0.8167,
+          "median_pattern_delay_cycles": 1.0
+        },
+        "thyroid_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 0.9211,
+          "detection_rate": 0.875,
+          "median_delay_cycles": 1.0,
+          "correct_pattern_rate": 0.7167,
+          "median_pattern_delay_cycles": 1.0
+        }
+      }
+    },
+    "hybrid": {
+      "params": {
+        "z_threshold": 4.0,
+        "h": 10.0
+      },
+      "fa_budget_met_on_val": true,
+      "val_metrics": {
+        "overall": {
+          "false_alarms_per_100_cycles": 3.6789,
+          "n_non_drift_cycles": 7774,
+          "n_users": 600
+        },
+        "anemia_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 1.7199,
+          "detection_rate": 0.8833,
+          "median_delay_cycles": 4.0,
+          "correct_pattern_rate": 0.8583,
+          "median_pattern_delay_cycles": 5.0
+        },
+        "benign_shift": {
+          "n_users": 90,
+          "false_alarms_per_100_cycles": 9.2388,
+          "detection_rate": 0.7333,
+          "median_delay_cycles": 0.0,
+          "persistent_flag_rate": 0.2111,
+          "pattern_flag_rate": 0.4667
+        },
+        "none": {
+          "n_users": 150,
+          "false_alarms_per_100_cycles": 2.0928,
+          "users_with_any_flag_rate": 0.2533
+        },
+        "pcos_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 1.4493,
+          "detection_rate": 1.0,
+          "median_delay_cycles": 0.0,
+          "correct_pattern_rate": 1.0,
+          "median_pattern_delay_cycles": 1.0
+        },
+        "thyroid_pattern": {
+          "n_users": 120,
+          "false_alarms_per_100_cycles": 1.4474,
+          "detection_rate": 1.0,
+          "median_delay_cycles": 2.0,
+          "correct_pattern_rate": 0.9833,
+          "median_pattern_delay_cycles": 3.0
+        }
+      }
+    }
+  },
+  "grids": {
+    "fixed_threshold": [
+      {}
+    ],
+    "zscore": [
+      {
+        "threshold": 1.5
+      },
+      {
+        "threshold": 2.0
+      },
+      {
+        "threshold": 2.5
+      },
+      {
+        "threshold": 3.0
+      },
+      {
+        "threshold": 3.5
+      },
+      {
+        "threshold": 4.0
+      },
+      {
+        "threshold": 5.0
+      }
+    ],
+    "ewma": [
+      {
+        "L": 2.0
+      },
+      {
+        "L": 2.5
+      },
+      {
+        "L": 3.0
+      },
+      {
+        "L": 3.5
+      },
+      {
+        "L": 4.0
+      },
+      {
+        "L": 5.0
+      },
+      {
+        "L": 6.0
+      }
+    ],
+    "cusum": [
+      {
+        "h": 2.0
+      },
+      {
+        "h": 3.0
+      },
+      {
+        "h": 4.0
+      },
+      {
+        "h": 5.0
+      },
+      {
+        "h": 6.0
+      },
+      {
+        "h": 8.0
+      },
+      {
+        "h": 10.0
+      }
+    ],
+    "isolation_forest": [
+      {
+        "threshold": 0.5
+      },
+      {
+        "threshold": 0.55
+      },
+      {
+        "threshold": 0.6
+      },
+      {
+        "threshold": 0.65
+      },
+      {
+        "threshold": 0.7
+      },
+      {
+        "threshold": 0.75
+      }
+    ],
+    "hybrid": [
+      {
+        "z_threshold": 2.5,
+        "h": 3.0
+      },
+      {
+        "z_threshold": 2.5,
+        "h": 4.0
+      },
+      {
+        "z_threshold": 2.5,
+        "h": 5.0
+      },
+      {
+        "z_threshold": 2.5,
+        "h": 6.0
+      },
+      {
+        "z_threshold": 2.5,
+        "h": 8.0
+      },
+      {
+        "z_threshold": 2.5,
+        "h": 10.0
+      },
+      {
+        "z_threshold": 3.0,
+        "h": 3.0
+      },
+      {
+        "z_threshold": 3.0,
+        "h": 4.0
+      },
+      {
+        "z_threshold": 3.0,
+        "h": 5.0
+      },
+      {
+        "z_threshold": 3.0,
+        "h": 6.0
+      },
+      {
+        "z_threshold": 3.0,
+        "h": 8.0
+      },
+      {
+        "z_threshold": 3.0,
+        "h": 10.0
+      },
+      {
+        "z_threshold": 3.5,
+        "h": 3.0
+      },
+      {
+        "z_threshold": 3.5,
+        "h": 4.0
+      },
+      {
+        "z_threshold": 3.5,
+        "h": 5.0
+      },
+      {
+        "z_threshold": 3.5,
+        "h": 6.0
+      },
+      {
+        "z_threshold": 3.5,
+        "h": 8.0
+      },
+      {
+        "z_threshold": 3.5,
+        "h": 10.0
+      },
+      {
+        "z_threshold": 4.0,
+        "h": 3.0
+      },
+      {
+        "z_threshold": 4.0,
+        "h": 4.0
+      },
+      {
+        "z_threshold": 4.0,
+        "h": 5.0
+      },
+      {
+        "z_threshold": 4.0,
+        "h": 6.0
+      },
+      {
+        "z_threshold": 4.0,
+        "h": 8.0
+      },
+      {
+        "z_threshold": 4.0,
+        "h": 10.0
+      },
+      {
+        "z_threshold": 5.0,
+        "h": 3.0
+      },
+      {
+        "z_threshold": 5.0,
+        "h": 4.0
+      },
+      {
+        "z_threshold": 5.0,
+        "h": 5.0
+      },
+      {
+        "z_threshold": 5.0,
+        "h": 6.0
+      },
+      {
+        "z_threshold": 5.0,
+        "h": 8.0
+      },
+      {
+        "z_threshold": 5.0,
+        "h": 10.0
+      }
+    ]
+  },
+  "val_sweep": [
+    {
+      "detector": "fixed_threshold",
+      "params": {},
+      "val_false_alarms_per_100_cycles": 3.3702,
+      "val_mean_detection_rate": 0.975,
+      "val_mean_correct_pattern_rate": 0.9444
+    },
+    {
+      "detector": "zscore",
+      "params": {
+        "threshold": 1.5
+      },
+      "val_false_alarms_per_100_cycles": 35.8889,
+      "val_mean_detection_rate": 1.0,
+      "val_mean_correct_pattern_rate": 0.9861
+    },
+    {
+      "detector": "zscore",
+      "params": {
+        "threshold": 2.0
+      },
+      "val_false_alarms_per_100_cycles": 23.7201,
+      "val_mean_detection_rate": 0.9972,
+      "val_mean_correct_pattern_rate": 0.9694
+    },
+    {
+      "detector": "zscore",
+      "params": {
+        "threshold": 2.5
+      },
+      "val_false_alarms_per_100_cycles": 11.4098,
+      "val_mean_detection_rate": 0.9889,
+      "val_mean_correct_pattern_rate": 0.9556
+    },
+    {
+      "detector": "zscore",
+      "params": {
+        "threshold": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 6.0844,
+      "val_mean_detection_rate": 0.9028,
+      "val_mean_correct_pattern_rate": 0.8333
+    },
+    {
+      "detector": "zscore",
+      "params": {
+        "threshold": 3.5
+      },
+      "val_false_alarms_per_100_cycles": 2.8042,
+      "val_mean_detection_rate": 0.6722,
+      "val_mean_correct_pattern_rate": 0.575
+    },
+    {
+      "detector": "zscore",
+      "params": {
+        "threshold": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 1.3121,
+      "val_mean_detection_rate": 0.5306,
+      "val_mean_correct_pattern_rate": 0.4333
+    },
+    {
+      "detector": "zscore",
+      "params": {
+        "threshold": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 0.4116,
+      "val_mean_detection_rate": 0.3694,
+      "val_mean_correct_pattern_rate": 0.1861
+    },
+    {
+      "detector": "ewma",
+      "params": {
+        "L": 2.0
+      },
+      "val_false_alarms_per_100_cycles": 18.4976,
+      "val_mean_detection_rate": 0.9944,
+      "val_mean_correct_pattern_rate": 0.9889
+    },
+    {
+      "detector": "ewma",
+      "params": {
+        "L": 2.5
+      },
+      "val_false_alarms_per_100_cycles": 10.3936,
+      "val_mean_detection_rate": 0.9861,
+      "val_mean_correct_pattern_rate": 0.9694
+    },
+    {
+      "detector": "ewma",
+      "params": {
+        "L": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 6.1873,
+      "val_mean_detection_rate": 0.9694,
+      "val_mean_correct_pattern_rate": 0.95
+    },
+    {
+      "detector": "ewma",
+      "params": {
+        "L": 3.5
+      },
+      "val_false_alarms_per_100_cycles": 3.5374,
+      "val_mean_detection_rate": 0.9333,
+      "val_mean_correct_pattern_rate": 0.9222
+    },
+    {
+      "detector": "ewma",
+      "params": {
+        "L": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 1.8009,
+      "val_mean_detection_rate": 0.8944,
+      "val_mean_correct_pattern_rate": 0.8778
+    },
+    {
+      "detector": "ewma",
+      "params": {
+        "L": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 0.7461,
+      "val_mean_detection_rate": 0.825,
+      "val_mean_correct_pattern_rate": 0.7806
+    },
+    {
+      "detector": "ewma",
+      "params": {
+        "L": 6.0
+      },
+      "val_false_alarms_per_100_cycles": 0.3602,
+      "val_mean_detection_rate": 0.7778,
+      "val_mean_correct_pattern_rate": 0.7056
+    },
+    {
+      "detector": "cusum",
+      "params": {
+        "h": 2.0
+      },
+      "val_false_alarms_per_100_cycles": 37.6383,
+      "val_mean_detection_rate": 1.0,
+      "val_mean_correct_pattern_rate": 0.9972
+    },
+    {
+      "detector": "cusum",
+      "params": {
+        "h": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 25.1351,
+      "val_mean_detection_rate": 0.9944,
+      "val_mean_correct_pattern_rate": 0.9917
+    },
+    {
+      "detector": "cusum",
+      "params": {
+        "h": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 17.7129,
+      "val_mean_detection_rate": 0.9917,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "cusum",
+      "params": {
+        "h": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 12.6318,
+      "val_mean_detection_rate": 0.9889,
+      "val_mean_correct_pattern_rate": 0.9806
+    },
+    {
+      "detector": "cusum",
+      "params": {
+        "h": 6.0
+      },
+      "val_false_alarms_per_100_cycles": 8.3998,
+      "val_mean_detection_rate": 0.9833,
+      "val_mean_correct_pattern_rate": 0.9722
+    },
+    {
+      "detector": "cusum",
+      "params": {
+        "h": 8.0
+      },
+      "val_false_alarms_per_100_cycles": 4.6694,
+      "val_mean_detection_rate": 0.9694,
+      "val_mean_correct_pattern_rate": 0.9528
+    },
+    {
+      "detector": "cusum",
+      "params": {
+        "h": 10.0
+      },
+      "val_false_alarms_per_100_cycles": 2.3797,
+      "val_mean_detection_rate": 0.9556,
+      "val_mean_correct_pattern_rate": 0.9306
+    },
+    {
+      "detector": "isolation_forest",
+      "params": {
+        "threshold": 0.5
+      },
+      "val_false_alarms_per_100_cycles": 1.7494,
+      "val_mean_detection_rate": 0.8417,
+      "val_mean_correct_pattern_rate": 0.7056
+    },
+    {
+      "detector": "isolation_forest",
+      "params": {
+        "threshold": 0.55
+      },
+      "val_false_alarms_per_100_cycles": 0.7975,
+      "val_mean_detection_rate": 0.6639,
+      "val_mean_correct_pattern_rate": 0.5389
+    },
+    {
+      "detector": "isolation_forest",
+      "params": {
+        "threshold": 0.6
+      },
+      "val_false_alarms_per_100_cycles": 0.1672,
+      "val_mean_detection_rate": 0.3611,
+      "val_mean_correct_pattern_rate": 0.2889
+    },
+    {
+      "detector": "isolation_forest",
+      "params": {
+        "threshold": 0.65
+      },
+      "val_false_alarms_per_100_cycles": 0.0515,
+      "val_mean_detection_rate": 0.1028,
+      "val_mean_correct_pattern_rate": 0.0833
+    },
+    {
+      "detector": "isolation_forest",
+      "params": {
+        "threshold": 0.7
+      },
+      "val_false_alarms_per_100_cycles": 0.0,
+      "val_mean_detection_rate": 0.0139,
+      "val_mean_correct_pattern_rate": 0.0139
+    },
+    {
+      "detector": "isolation_forest",
+      "params": {
+        "threshold": 0.75
+      },
+      "val_false_alarms_per_100_cycles": 0.0,
+      "val_mean_detection_rate": 0.0028,
+      "val_mean_correct_pattern_rate": 0.0028
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 2.5,
+        "h": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 30.5891,
+      "val_mean_detection_rate": 1.0,
+      "val_mean_correct_pattern_rate": 0.9917
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 2.5,
+        "h": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 25.1737,
+      "val_mean_detection_rate": 0.9972,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 2.5,
+        "h": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 21.3918,
+      "val_mean_detection_rate": 0.9944,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 2.5,
+        "h": 6.0
+      },
+      "val_false_alarms_per_100_cycles": 18.2274,
+      "val_mean_detection_rate": 0.9889,
+      "val_mean_correct_pattern_rate": 0.9778
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 2.5,
+        "h": 8.0
+      },
+      "val_false_alarms_per_100_cycles": 15.3074,
+      "val_mean_detection_rate": 0.9889,
+      "val_mean_correct_pattern_rate": 0.9722
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 2.5,
+        "h": 10.0
+      },
+      "val_false_alarms_per_100_cycles": 13.3651,
+      "val_mean_detection_rate": 0.9889,
+      "val_mean_correct_pattern_rate": 0.9667
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.0,
+        "h": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 27.7721,
+      "val_mean_detection_rate": 0.9972,
+      "val_mean_correct_pattern_rate": 0.9917
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.0,
+        "h": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 21.6748,
+      "val_mean_detection_rate": 0.9944,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.0,
+        "h": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 17.3656,
+      "val_mean_detection_rate": 0.9917,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.0,
+        "h": 6.0
+      },
+      "val_false_alarms_per_100_cycles": 13.8024,
+      "val_mean_detection_rate": 0.9861,
+      "val_mean_correct_pattern_rate": 0.9778
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.0,
+        "h": 8.0
+      },
+      "val_false_alarms_per_100_cycles": 10.4579,
+      "val_mean_detection_rate": 0.9806,
+      "val_mean_correct_pattern_rate": 0.9694
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.0,
+        "h": 10.0
+      },
+      "val_false_alarms_per_100_cycles": 8.284,
+      "val_mean_detection_rate": 0.975,
+      "val_mean_correct_pattern_rate": 0.9583
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.5,
+        "h": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 26.087,
+      "val_mean_detection_rate": 0.9972,
+      "val_mean_correct_pattern_rate": 0.9917
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.5,
+        "h": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 19.6553,
+      "val_mean_detection_rate": 0.9944,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.5,
+        "h": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 15.0244,
+      "val_mean_detection_rate": 0.9917,
+      "val_mean_correct_pattern_rate": 0.9806
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.5,
+        "h": 6.0
+      },
+      "val_false_alarms_per_100_cycles": 11.1397,
+      "val_mean_detection_rate": 0.9861,
+      "val_mean_correct_pattern_rate": 0.975
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.5,
+        "h": 8.0
+      },
+      "val_false_alarms_per_100_cycles": 7.435,
+      "val_mean_detection_rate": 0.9778,
+      "val_mean_correct_pattern_rate": 0.9611
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 3.5,
+        "h": 10.0
+      },
+      "val_false_alarms_per_100_cycles": 5.1582,
+      "val_mean_detection_rate": 0.9667,
+      "val_mean_correct_pattern_rate": 0.95
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 4.0,
+        "h": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 25.4052,
+      "val_mean_detection_rate": 0.9944,
+      "val_mean_correct_pattern_rate": 0.9917
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 4.0,
+        "h": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 18.4847,
+      "val_mean_detection_rate": 0.9917,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 4.0,
+        "h": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 13.6995,
+      "val_mean_detection_rate": 0.9889,
+      "val_mean_correct_pattern_rate": 0.9806
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 4.0,
+        "h": 6.0
+      },
+      "val_false_alarms_per_100_cycles": 9.6347,
+      "val_mean_detection_rate": 0.9833,
+      "val_mean_correct_pattern_rate": 0.975
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 4.0,
+        "h": 8.0
+      },
+      "val_false_alarms_per_100_cycles": 5.93,
+      "val_mean_detection_rate": 0.9722,
+      "val_mean_correct_pattern_rate": 0.9583
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 4.0,
+        "h": 10.0
+      },
+      "val_false_alarms_per_100_cycles": 3.6789,
+      "val_mean_detection_rate": 0.9611,
+      "val_mean_correct_pattern_rate": 0.9472
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 5.0,
+        "h": 3.0
+      },
+      "val_false_alarms_per_100_cycles": 25.1737,
+      "val_mean_detection_rate": 0.9944,
+      "val_mean_correct_pattern_rate": 0.9917
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 5.0,
+        "h": 4.0
+      },
+      "val_false_alarms_per_100_cycles": 17.8158,
+      "val_mean_detection_rate": 0.9917,
+      "val_mean_correct_pattern_rate": 0.9833
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 5.0,
+        "h": 5.0
+      },
+      "val_false_alarms_per_100_cycles": 12.9277,
+      "val_mean_detection_rate": 0.9889,
+      "val_mean_correct_pattern_rate": 0.9806
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 5.0,
+        "h": 6.0
+      },
+      "val_false_alarms_per_100_cycles": 8.76,
+      "val_mean_detection_rate": 0.9833,
+      "val_mean_correct_pattern_rate": 0.9722
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 5.0,
+        "h": 8.0
+      },
+      "val_false_alarms_per_100_cycles": 5.0553,
+      "val_mean_detection_rate": 0.9694,
+      "val_mean_correct_pattern_rate": 0.9528
+    },
+    {
+      "detector": "hybrid",
+      "params": {
+        "z_threshold": 5.0,
+        "h": 10.0
+      },
+      "val_false_alarms_per_100_cycles": 2.7914,
+      "val_mean_detection_rate": 0.9556,
+      "val_mean_correct_pattern_rate": 0.9389
+    }
+  ]
+}

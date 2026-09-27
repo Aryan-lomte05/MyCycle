@@ -1,10 +1,10 @@
 [
   {
     "cycle_index": 1,
-    "start_date": "2025-01-06",
-    "cycle_length_days": 29,
-    "flow": 1,
-    "pain": 4,
+    "start_date": "2024-11-27",
+    "cycle_length_days": 30,
+    "flow": 2,
+    "pain": 3,
     "symptoms": {
       "acne": 0,
       "excess_hair": 0,
@@ -12,16 +12,16 @@
       "fatigue": 0,
       "mood": 0,
       "weight_change": 0,
-      "dizziness": 0,
+      "dizziness": 1,
       "pallor": 0
     }
   },
   {
     "cycle_index": 2,
-    "start_date": "2025-02-04",
-    "cycle_length_days": 30,
-    "flow": 2,
-    "pain": 4,
+    "start_date": "2024-12-27",
+    "cycle_length_days": 27,
+    "flow": 3,
+    "pain": 7,
     "symptoms": {
       "acne": 0,
       "excess_hair": 0,
@@ -30,15 +30,15 @@
       "mood": 0,
       "weight_change": 0,
       "dizziness": 0,
-      "pallor": 0
+      "pallor": 1
     }
   },
   {
     "cycle_index": 3,
-    "start_date": "2025-03-06",
+    "start_date": "2025-01-23",
     "cycle_length_days": 28,
     "flow": 2,
-    "pain": 4,
+    "pain": 6,
     "symptoms": {
       "acne": 0,
       "excess_hair": 0,
@@ -52,12 +52,12 @@
   },
   {
     "cycle_index": 4,
-    "start_date": "2025-04-03",
-    "cycle_length_days": 27,
+    "start_date": "2025-02-20",
+    "cycle_length_days": 30,
     "flow": 2,
-    "pain": 1,
+    "pain": 4,
     "symptoms": {
-      "acne": 0,
+      "acne": 2,
       "excess_hair": 0,
       "hair_loss": 0,
       "fatigue": 0,
@@ -69,77 +69,9 @@
   },
   {
     "cycle_index": 5,
-    "start_date": "2025-04-30",
+    "start_date": "2025-03-22",
     "cycle_length_days": 30,
     "flow": 2,
-    "pain": 3,
-    "symptoms": {
-      "acne": 0,
-      "excess_hair": 0,
-      "hair_loss": 0,
-      "fatigue": 0,
-      "mood": 1,
-      "weight_change": 0,
-      "dizziness": 0,
-      "pallor": 0
-    }
-  },
-  {
-    "cycle_index": 6,
-    "start_date": "2025-05-30",
-    "cycle_length_days": 30,
-    "flow": 1,
-    "pain": 1,
-    "symptoms": {
-      "acne": 0,
-      "excess_hair": 0,
-      "hair_loss": 0,
-      "fatigue": 0,
-      "mood": 0,
-      "weight_change": 0,
-      "dizziness": 0,
-      "pallor": 0
-    }
-  },
-  {
-    "cycle_index": 7,
-    "start_date": "2025-06-29",
-    "cycle_length_days": 31,
-    "flow": 2,
-    "pain": 3,
-    "symptoms": {
-      "acne": 0,
-      "excess_hair": 0,
-      "hair_loss": 0,
-      "fatigue": 0,
-      "mood": 1,
-      "weight_change": 0,
-      "dizziness": 0,
-      "pallor": 0
-    }
-  },
-  {
-    "cycle_index": 8,
-    "start_date": "2025-07-30",
-    "cycle_length_days": 30,
-    "flow": 2,
-    "pain": 3,
-    "symptoms": {
-      "acne": 0,
-      "excess_hair": 0,
-      "hair_loss": 0,
-      "fatigue": 0,
-      "mood": 1,
-      "weight_change": 0,
-      "dizziness": 0,
-      "pallor": 0
-    }
-  },
-  {
-    "cycle_index": 9,
-    "start_date": "2025-08-29",
-    "cycle_length_days": 30,
-    "flow": 1,
     "pain": 4,
     "symptoms": {
       "acne": 0,
@@ -153,11 +85,79 @@
     }
   },
   {
-    "cycle_index": 10,
-    "start_date": "2025-09-28",
+    "cycle_index": 6,
+    "start_date": "2025-04-21",
+    "cycle_length_days": 30,
+    "flow": 2,
+    "pain": 5,
+    "symptoms": {
+      "acne": 0,
+      "excess_hair": 0,
+      "hair_loss": 0,
+      "fatigue": 0,
+      "mood": 1,
+      "weight_change": 0,
+      "dizziness": 0,
+      "pallor": 0
+    }
+  },
+  {
+    "cycle_index": 7,
+    "start_date": "2025-05-21",
+    "cycle_length_days": 29,
+    "flow": 2,
+    "pain": 4,
+    "symptoms": {
+      "acne": 1,
+      "excess_hair": 0,
+      "hair_loss": 0,
+      "fatigue": 0,
+      "mood": 0,
+      "weight_change": 0,
+      "dizziness": 0,
+      "pallor": 0
+    }
+  },
+  {
+    "cycle_index": 8,
+    "start_date": "2025-06-19",
     "cycle_length_days": 27,
     "flow": 2,
-    "pain": 3,
+    "pain": 6,
+    "symptoms": {
+      "acne": 1,
+      "excess_hair": 0,
+      "hair_loss": 0,
+      "fatigue": 0,
+      "mood": 0,
+      "weight_change": 0,
+      "dizziness": 0,
+      "pallor": 0
+    }
+  },
+  {
+    "cycle_index": 9,
+    "start_date": "2025-07-16",
+    "cycle_length_days": 28,
+    "flow": 2,
+    "pain": 6,
+    "symptoms": {
+      "acne": 0,
+      "excess_hair": 0,
+      "hair_loss": 0,
+      "fatigue": 0,
+      "mood": 0,
+      "weight_change": 0,
+      "dizziness": 0,
+      "pallor": 0
+    }
+  },
+  {
+    "cycle_index": 10,
+    "start_date": "2025-08-13",
+    "cycle_length_days": 29,
+    "flow": 2,
+    "pain": 5,
     "symptoms": {
       "acne": 0,
       "excess_hair": 0,
@@ -171,10 +171,10 @@
   },
   {
     "cycle_index": 11,
-    "start_date": "2025-10-25",
+    "start_date": "2025-09-11",
     "cycle_length_days": 31,
     "flow": 2,
-    "pain": 1,
+    "pain": 4,
     "symptoms": {
       "acne": 0,
       "excess_hair": 0,
@@ -188,17 +188,17 @@
   },
   {
     "cycle_index": 12,
-    "start_date": "2025-11-25",
-    "cycle_length_days": 28,
+    "start_date": "2025-10-12",
+    "cycle_length_days": 29,
     "flow": 2,
-    "pain": 1,
+    "pain": 4,
     "symptoms": {
       "acne": 0,
       "excess_hair": 0,
       "hair_loss": 0,
       "fatigue": 0,
-      "mood": 0,
-      "weight_change": 0,
+      "mood": 2,
+      "weight_change": 2,
       "dizziness": 0,
       "pallor": 0
     }

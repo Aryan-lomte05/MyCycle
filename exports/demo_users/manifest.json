@@ -1,35 +1,192 @@
 {
+  "meta": {
+    "seed": 42,
+    "git_commit": "6a95883dfab65b3907295bf9c5bfd89487afa42e-dirty",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "generator": "sim/make_personas.py",
+    "detector": "hybrid",
+    "detector_params": {
+      "z_threshold": 4.0,
+      "h": 10.0
+    },
+    "thresholds_file": "results/thresholds.json"
+  },
   "simulated": true,
   "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
-  "note": "v0 hand-shaped personas. expected_flag is the intent, not yet verified against the detector.",
+  "note": "Simulator-derived personas. expected_flags is what the Tier 1 hybrid detector returns on each cycle, checked by tests/test_demo_users.py. Not real people.",
   "personas": [
     {
       "id": "regular",
       "file": "regular.json",
       "expected_flag": "none",
       "first_abnormal_cycle": null,
-      "intended_flag_by_cycle": null
+      "intended_flag_by_cycle": null,
+      "expected_flags": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "expected_confidence": [
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low"
+      ],
+      "simulator_draw": 0,
+      "latent": {
+        "mu": 28.45,
+        "sigma": 1.417,
+        "length_shift": 0.0,
+        "flow_shift": 0.0,
+        "ramp_cycles": 1
+      }
     },
     {
       "id": "pcos_pattern",
       "file": "pcos_pattern.json",
       "expected_flag": "pcos_pattern",
-      "first_abnormal_cycle": 6,
-      "intended_flag_by_cycle": 8
+      "first_abnormal_cycle": 5,
+      "intended_flag_by_cycle": 6,
+      "expected_flags": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "pcos_pattern",
+        "pcos_pattern",
+        "pcos_pattern",
+        "pcos_pattern",
+        "pcos_pattern",
+        "pcos_pattern",
+        "pcos_pattern"
+      ],
+      "expected_confidence": [
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "medium",
+        "high",
+        "high",
+        "high",
+        "high",
+        "high",
+        "high"
+      ],
+      "simulator_draw": 23,
+      "latent": {
+        "mu": 26.631,
+        "sigma": 2.117,
+        "length_shift": 11.144,
+        "flow_shift": 0.0,
+        "ramp_cycles": 2
+      }
     },
     {
       "id": "anemia_pattern",
       "file": "anemia_pattern.json",
       "expected_flag": "anemia_pattern",
-      "first_abnormal_cycle": 6,
-      "intended_flag_by_cycle": 8
+      "first_abnormal_cycle": 7,
+      "intended_flag_by_cycle": 9,
+      "expected_flags": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "anemia_pattern",
+        "anemia_pattern",
+        "anemia_pattern",
+        "anemia_pattern"
+      ],
+      "expected_confidence": [
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "low",
+        "medium",
+        "high",
+        "high",
+        "high"
+      ],
+      "simulator_draw": 11,
+      "latent": {
+        "mu": 36.088,
+        "sigma": 2.004,
+        "length_shift": 0.0,
+        "flow_shift": 1.291,
+        "ramp_cycles": 2
+      }
     },
     {
       "id": "thyroid_pattern",
       "file": "thyroid_pattern.json",
       "expected_flag": "thyroid_pattern",
-      "first_abnormal_cycle": 6,
-      "intended_flag_by_cycle": 8
+      "first_abnormal_cycle": 5,
+      "intended_flag_by_cycle": 5,
+      "expected_flags": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "thyroid_pattern",
+        "thyroid_pattern",
+        "thyroid_pattern",
+        "thyroid_pattern",
+        "thyroid_pattern",
+        "thyroid_pattern",
+        "thyroid_pattern",
+        "thyroid_pattern"
+      ],
+      "expected_confidence": [
+        "low",
+        "low",
+        "low",
+        "low",
+        "medium",
+        "high",
+        "high",
+        "high",
+        "high",
+        "high",
+        "high",
+        "high"
+      ],
+      "simulator_draw": 10,
+      "latent": {
+        "mu": 30.172,
+        "sigma": 1.324,
+        "length_shift": -7.176,
+        "flow_shift": 0.0,
+        "ramp_cycles": 1
+      }
     }
   ]
 }

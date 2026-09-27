@@ -1,0 +1,373 @@
+{
+  "meta": {
+    "seed": 42,
+    "git_commit": "6a95883dfab65b3907295bf9c5bfd89487afa42e-dirty",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "simulator_seed": 42,
+    "simulator_commit": "cd70ceebe318504f749a921251a4fe0e586cee76",
+    "tuned_on": "val",
+    "evaluated_on": "test",
+    "fa_budget_per_100_cycles": 5.0,
+    "objective": "max mean detection rate over pcos, anemia, thyroid on val, subject to overall false alarms <= budget",
+    "definitions": "(per drift type, test split, one user = one sequence):\n  non-drift cycle         drift_active is false (none users, cycles before onset, cycles after a benign shift ended)\n  false_alarms_per_100    100 * flagged non-drift cycles / non-drift cycles (any flag other than none)\n  detection_rate          pattern drifts: share of users with any flag at or after onset\n                          benign_shift: share of users flagged during the shifted cycles\n  median_delay_cycles     median of (first flagged cycle at or after onset) - onset, over detected users\n  correct_pattern_rate    share of users given the correct pattern flag at or after onset\n  persistent_flag_rate    benign_shift: share of users flagged on 2 or more cycles after the shift ended\n  pattern_flag_rate       benign_shift: share of users given any pattern flag at or after onset",
+    "n_test_users": 600,
+    "n_test_cycles": 13917
+  },
+  "rows": [
+    {
+      "detector": "fixed_threshold",
+      "drift_type": "pcos",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 3.8168,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 0.0,
+      "correct_pattern_rate": 1.0,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "fixed_threshold",
+      "drift_type": "anemia",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 4.8556,
+      "detection_rate": 0.9917,
+      "median_delay_cycles": 1.0,
+      "correct_pattern_rate": 0.9917,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "fixed_threshold",
+      "drift_type": "thyroid",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 2.5253,
+      "detection_rate": 0.85,
+      "median_delay_cycles": 2.0,
+      "correct_pattern_rate": 0.7833,
+      "median_pattern_delay_cycles": 2.0
+    },
+    {
+      "detector": "fixed_threshold",
+      "drift_type": "benign_shift",
+      "n_users": 90,
+      "false_alarms_per_100_cycles": 3.0874,
+      "detection_rate": 0.7,
+      "median_delay_cycles": 0.0,
+      "persistent_flag_rate": 0.1,
+      "pattern_flag_rate": 0.5778
+    },
+    {
+      "detector": "zscore",
+      "drift_type": "pcos",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 4.0712,
+      "detection_rate": 0.9417,
+      "median_delay_cycles": 0.0,
+      "correct_pattern_rate": 0.925,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "zscore",
+      "drift_type": "anemia",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 3.0184,
+      "detection_rate": 0.3583,
+      "median_delay_cycles": 3.0,
+      "correct_pattern_rate": 0.1,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "zscore",
+      "drift_type": "thyroid",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 2.904,
+      "detection_rate": 0.65,
+      "median_delay_cycles": 0.0,
+      "correct_pattern_rate": 0.6167,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "zscore",
+      "drift_type": "benign_shift",
+      "n_users": 90,
+      "false_alarms_per_100_cycles": 2.7211,
+      "detection_rate": 0.7444,
+      "median_delay_cycles": 0.0,
+      "persistent_flag_rate": 0.0778,
+      "pattern_flag_rate": 0.5111
+    },
+    {
+      "detector": "ewma",
+      "drift_type": "pcos",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 1.6539,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 1.0,
+      "correct_pattern_rate": 1.0,
+      "median_pattern_delay_cycles": 2.0
+    },
+    {
+      "detector": "ewma",
+      "drift_type": "anemia",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 0.7874,
+      "detection_rate": 0.8833,
+      "median_delay_cycles": 3.0,
+      "correct_pattern_rate": 0.85,
+      "median_pattern_delay_cycles": 3.0
+    },
+    {
+      "detector": "ewma",
+      "drift_type": "thyroid",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 0.6313,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 2.0,
+      "correct_pattern_rate": 0.9833,
+      "median_pattern_delay_cycles": 2.0
+    },
+    {
+      "detector": "ewma",
+      "drift_type": "benign_shift",
+      "n_users": 90,
+      "false_alarms_per_100_cycles": 6.0701,
+      "detection_rate": 0.5778,
+      "median_delay_cycles": 0.0,
+      "persistent_flag_rate": 0.3222,
+      "pattern_flag_rate": 0.1889
+    },
+    {
+      "detector": "cusum",
+      "drift_type": "pcos",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 0.1272,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 1.0,
+      "correct_pattern_rate": 1.0,
+      "median_pattern_delay_cycles": 3.0
+    },
+    {
+      "detector": "cusum",
+      "drift_type": "anemia",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 0.1312,
+      "detection_rate": 0.9417,
+      "median_delay_cycles": 5.0,
+      "correct_pattern_rate": 0.9333,
+      "median_pattern_delay_cycles": 5.0
+    },
+    {
+      "detector": "cusum",
+      "drift_type": "thyroid",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 0.0,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 2.0,
+      "correct_pattern_rate": 1.0,
+      "median_pattern_delay_cycles": 4.0
+    },
+    {
+      "detector": "cusum",
+      "drift_type": "benign_shift",
+      "n_users": 90,
+      "false_alarms_per_100_cycles": 12.1926,
+      "detection_rate": 0.3,
+      "median_delay_cycles": 0.0,
+      "persistent_flag_rate": 0.3333,
+      "pattern_flag_rate": 0.0444
+    },
+    {
+      "detector": "isolation_forest",
+      "drift_type": "pcos",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 1.0178,
+      "detection_rate": 0.95,
+      "median_delay_cycles": 1.0,
+      "correct_pattern_rate": 0.8917,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "isolation_forest",
+      "drift_type": "anemia",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 1.4436,
+      "detection_rate": 0.7917,
+      "median_delay_cycles": 1.0,
+      "correct_pattern_rate": 0.5667,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "isolation_forest",
+      "drift_type": "thyroid",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 1.1364,
+      "detection_rate": 0.8917,
+      "median_delay_cycles": 1.0,
+      "correct_pattern_rate": 0.7917,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "isolation_forest",
+      "drift_type": "benign_shift",
+      "n_users": 90,
+      "false_alarms_per_100_cycles": 0.9419,
+      "detection_rate": 0.3778,
+      "median_delay_cycles": 0.0,
+      "persistent_flag_rate": 0.0111,
+      "pattern_flag_rate": 0.3111
+    },
+    {
+      "detector": "hybrid",
+      "drift_type": "pcos",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 2.6718,
+      "detection_rate": 0.9917,
+      "median_delay_cycles": 0.0,
+      "correct_pattern_rate": 0.9917,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "hybrid",
+      "drift_type": "anemia",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 1.706,
+      "detection_rate": 0.9167,
+      "median_delay_cycles": 5.0,
+      "correct_pattern_rate": 0.8917,
+      "median_pattern_delay_cycles": 5.0
+    },
+    {
+      "detector": "hybrid",
+      "drift_type": "thyroid",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 1.5152,
+      "detection_rate": 0.9917,
+      "median_delay_cycles": 2.0,
+      "correct_pattern_rate": 0.975,
+      "median_pattern_delay_cycles": 2.0
+    },
+    {
+      "detector": "hybrid",
+      "drift_type": "benign_shift",
+      "n_users": 90,
+      "false_alarms_per_100_cycles": 9.6285,
+      "detection_rate": 0.6778,
+      "median_delay_cycles": 0.0,
+      "persistent_flag_rate": 0.2444,
+      "pattern_flag_rate": 0.3889
+    }
+  ],
+  "overall": {
+    "fixed_threshold": {
+      "false_alarms_per_100_cycles": 3.3574,
+      "n_non_drift_cycles": 7744,
+      "n_users": 600,
+      "none_users": {
+        "n_users": 150,
+        "false_alarms_per_100_cycles": 3.2637,
+        "users_with_any_flag_rate": 0.3333
+      }
+    },
+    "zscore": {
+      "false_alarms_per_100_cycles": 2.9055,
+      "n_non_drift_cycles": 7744,
+      "n_users": 600,
+      "none_users": {
+        "n_users": 150,
+        "false_alarms_per_100_cycles": 2.7197,
+        "users_with_any_flag_rate": 0.3467
+      }
+    },
+    "ewma": {
+      "false_alarms_per_100_cycles": 2.9184,
+      "n_non_drift_cycles": 7744,
+      "n_users": 600,
+      "none_users": {
+        "n_users": 150,
+        "false_alarms_per_100_cycles": 2.4621,
+        "users_with_any_flag_rate": 0.2
+      }
+    },
+    "cusum": {
+      "false_alarms_per_100_cycles": 4.3905,
+      "n_non_drift_cycles": 7744,
+      "n_users": 600,
+      "none_users": {
+        "n_users": 150,
+        "false_alarms_per_100_cycles": 3.006,
+        "users_with_any_flag_rate": 0.1267
+      }
+    },
+    "isolation_forest": {
+      "false_alarms_per_100_cycles": 1.7949,
+      "n_non_drift_cycles": 7744,
+      "n_users": 600,
+      "none_users": {
+        "n_users": 150,
+        "false_alarms_per_100_cycles": 2.6625,
+        "users_with_any_flag_rate": 0.4533
+      }
+    },
+    "hybrid": {
+      "false_alarms_per_100_cycles": 4.2743,
+      "n_non_drift_cycles": 7744,
+      "n_users": 600,
+      "none_users": {
+        "n_users": 150,
+        "false_alarms_per_100_cycles": 2.8915,
+        "users_with_any_flag_rate": 0.28
+      }
+    },
+    "zscore_spec_threshold_2": {
+      "false_alarms_per_100_cycles": 23.1921,
+      "n_non_drift_cycles": 7744,
+      "n_users": 600,
+      "none_users": {
+        "n_users": 150,
+        "false_alarms_per_100_cycles": 26.9969,
+        "users_with_any_flag_rate": 0.98
+      }
+    }
+  },
+  "reference_rows": [
+    {
+      "detector": "zscore_spec_threshold_2",
+      "drift_type": "pcos",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 16.285,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 0.0,
+      "correct_pattern_rate": 1.0,
+      "median_pattern_delay_cycles": 0.0
+    },
+    {
+      "detector": "zscore_spec_threshold_2",
+      "drift_type": "anemia",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 13.9108,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 1.0,
+      "correct_pattern_rate": 0.95,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "zscore_spec_threshold_2",
+      "drift_type": "thyroid",
+      "n_users": 120,
+      "false_alarms_per_100_cycles": 14.899,
+      "detection_rate": 1.0,
+      "median_delay_cycles": 0.0,
+      "correct_pattern_rate": 1.0,
+      "median_pattern_delay_cycles": 1.0
+    },
+    {
+      "detector": "zscore_spec_threshold_2",
+      "drift_type": "benign_shift",
+      "n_users": 90,
+      "false_alarms_per_100_cycles": 26.2166,
+      "detection_rate": 0.9333,
+      "median_delay_cycles": 0.0,
+      "persistent_flag_rate": 0.8778,
+      "pattern_flag_rate": 0.9778
+    }
+  ]
+}
