@@ -5,3 +5,12 @@ numpy
 pandas
 pyarrow
 scikit-learn
+xgboost
+lightgbm
+matplotlib
+kaggle
+torch
+onnx
+onnxruntime
+onnxscript
+joblib

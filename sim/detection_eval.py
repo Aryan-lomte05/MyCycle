@@ -59,8 +59,18 @@ def user_logs(cycles: pd.DataFrame) -> list[tuple[str, list[dict]]]:
 
 
 def with_truth(cycles: pd.DataFrame, flags: list[tuple[str, int, str]]) -> pd.DataFrame:
+    """`cycles` and `flags` must cover exactly the same (user_id, cycle_index) pairs. A caller that
+    passes flags for only some of `cycles`'s users gets a loud error here instead of a silent NaN
+    flag downstream, where `NaN != "none"` reads as a flagged cycle and inflates false-alarm rates
+    (this caught a real bug: sim/gru.py's personalization experiment once merged partial flags onto
+    the full test split)."""
     f = pd.DataFrame(flags, columns=["user_id", "cycle_index", "flag"])
-    return cycles[TRUTH].merge(f, on=["user_id", "cycle_index"], how="left")
+    merged = cycles[TRUTH].merge(f, on=["user_id", "cycle_index"], how="left")
+    missing = merged["flag"].isna()
+    if missing.any():
+        raise ValueError(f"with_truth: {int(missing.sum())} of {len(merged)} cycles have no matching flag "
+                         f"(first: {merged.loc[missing, ['user_id', 'cycle_index']].iloc[0].to_dict()})")
+    return merged
 
 
 def run_detector(cycles: pd.DataFrame, name: str, params: dict, tuning: bool = False) -> pd.DataFrame:

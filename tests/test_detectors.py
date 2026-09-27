@@ -209,3 +209,11 @@ def test_isolation_forest_replay_matches_streaming():
     replay = replay_isolation_forest(val, isolation_forest_raw(val), 0.55, tuning=True)
     stream = run_detector(val, "isolation_forest", {"threshold": 0.55}, tuning=True)
     assert replay["flag"].tolist() == stream["flag"].tolist()
+
+
+def test_with_truth_rejects_flags_missing_for_some_cycles():
+    from sim.detection_eval import with_truth
+    cycles, _ = simulate(SimConfig(n_users=5), seed=2)
+    partial_flags = [(cycles.user_id.iloc[0], int(cycles.cycle_index.iloc[0]), "none")]
+    with pytest.raises(ValueError):
+        with_truth(cycles, partial_flags)
