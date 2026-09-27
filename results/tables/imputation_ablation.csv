@@ -1,0 +1,7 @@
+feature_set,model,median_impute_auc,knn_impute_auc,abs_diff
+symptom_only,logistic_regression,0.8827,0.8823,0.0004
+symptom_only,random_forest,0.8886,0.8875,0.001
+symptom_plus_vitals,logistic_regression,0.8771,0.877,0.0001
+symptom_plus_vitals,random_forest,0.8932,0.8934,0.0002
+with_labs_reference,logistic_regression,0.9416,0.9417,0.0001
+with_labs_reference,random_forest,0.957,0.9568,0.0001

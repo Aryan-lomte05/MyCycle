@@ -15,3 +15,7 @@ Two lines per change: what changed, how to rerun.
   Rerun: `python -m sim.detection_eval` (needs results/sim/*.parquet from sim.simulator first).
 - 2026-09-27 Aryan: replaced hand-shaped v0 demo personas with simulator-derived ones (sim/make_personas.py) verified against the tuned Tier 1 hybrid detector: each pattern persona is flagged none before onset and the intended pattern by the manifest's cycle, never a different pattern. 9 new tests, all previously skipped demo-user tests now pass.
   Rerun: `python -m sim.make_personas` (needs results/thresholds.json).
+- 2026-09-27 Aryan: A3 classifier comparison. Downloaded the real Kaggle PCOS dataset (data/download_pcos.py, checksums and full column disposition in data/DATA_REGISTER.md), wrote sim/pcos_data.py (leakage-removal feature sets S1/S2/S3) and sim/classifiers.py (8 models, stratified 5-fold CV x 5 seeds, patient-level bootstrap CI, paired bootstrap top-2 test). 16 new tests. Wrote results/classifiers.json.
+  Rerun: `python data/download_pcos.py` then `python -m sim.classifiers`.
+- 2026-09-27 Aryan: A3 figures and ablation. sim/make_figures.py writes results/figures/classifier_comparison.png (AUC by model/feature set with CI bars), results/figures/pcos_calibration.png, results/tables/imputation_ablation.md/.csv (median vs KNN imputation, negligible difference since only 2/541 rows have missing values). Added claims C009-C013 to docs/CLAIMS_EVIDENCE.md, all measured and supported.
+  Rerun: `python -m sim.make_figures` (after sim.classifiers).

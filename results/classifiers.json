@@ -1,0 +1,539 @@
+{
+  "meta": {
+    "seed": 0,
+    "git_commit": "679c44307aa989b166878e3a4b4bae94e8c5805b",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_folds": 5,
+    "protocol": "stratified 5-fold CV x 5 seeds, preprocessing fit per fold, patient-level bootstrap CI (2000 resamples), paired bootstrap for the top-2 models per feature set"
+  },
+  "datasets": [
+    {
+      "id": "kaggle_pcos",
+      "n_rows": 541,
+      "n_features_used": 40,
+      "label_definition": "PCOS (Y/N) as recorded by the contributing hospitals (diagnostic protocol UNVERIFIED, see data/DATA_REGISTER.md)"
+    }
+  ],
+  "rows": [
+    {
+      "dataset": "kaggle_pcos",
+      "model": "logistic_regression",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.8823,
+      "auc_ci_low": 0.8489,
+      "auc_ci_high": 0.9123,
+      "sens_at_90spec": 0.7345,
+      "spec_at_90sens": 0.5027,
+      "brier": 0.1316,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8823,
+        0.8814,
+        0.8804,
+        0.875,
+        0.8849
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "random_forest",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.8889,
+      "auc_ci_low": 0.8599,
+      "auc_ci_high": 0.9164,
+      "sens_at_90spec": 0.6746,
+      "spec_at_90sens": 0.6786,
+      "brier": 0.1227,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8849,
+        0.8808,
+        0.8865,
+        0.8852,
+        0.8826
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "xgboost",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.8845,
+      "auc_ci_low": 0.8523,
+      "auc_ci_high": 0.9143,
+      "sens_at_90spec": 0.7119,
+      "spec_at_90sens": 0.6593,
+      "brier": 0.1278,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8741,
+        0.8769,
+        0.8785,
+        0.8648,
+        0.8765
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "lightgbm",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.8776,
+      "auc_ci_low": 0.8453,
+      "auc_ci_high": 0.9085,
+      "sens_at_90spec": 0.7119,
+      "spec_at_90sens": 0.6374,
+      "brier": 0.1357,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8669,
+        0.8764,
+        0.8786,
+        0.8594,
+        0.8686
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "svm_rbf",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.887,
+      "auc_ci_low": 0.856,
+      "auc_ci_high": 0.9171,
+      "sens_at_90spec": 0.7345,
+      "spec_at_90sens": 0.6071,
+      "brier": 0.1186,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8856,
+        0.8828,
+        0.8856,
+        0.8799,
+        0.8857
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "mlp",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.8645,
+      "auc_ci_low": 0.8264,
+      "auc_ci_high": 0.8989,
+      "sens_at_90spec": 0.7288,
+      "spec_at_90sens": 0.5495,
+      "brier": 0.1524,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8036,
+        0.8088,
+        0.7841,
+        0.8295,
+        0.8621
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "naive_bayes",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.8757,
+      "auc_ci_low": 0.8408,
+      "auc_ci_high": 0.9075,
+      "sens_at_90spec": 0.7345,
+      "spec_at_90sens": 0.5357,
+      "brier": 0.1377,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8735,
+        0.8642,
+        0.8756,
+        0.8652,
+        0.8691
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "knn",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.8908,
+      "auc_ci_low": 0.8618,
+      "auc_ci_high": 0.9182,
+      "sens_at_90spec": 0.7056,
+      "spec_at_90sens": 0.6258,
+      "brier": 0.1204,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8847,
+        0.8814,
+        0.8854,
+        0.8894,
+        0.8927
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "logistic_regression",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.8784,
+      "auc_ci_low": 0.8447,
+      "auc_ci_high": 0.9087,
+      "sens_at_90spec": 0.6949,
+      "spec_at_90sens": 0.5137,
+      "brier": 0.1351,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8749,
+        0.8748,
+        0.8756,
+        0.8728,
+        0.8807
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "random_forest",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.8943,
+      "auc_ci_low": 0.8636,
+      "auc_ci_high": 0.922,
+      "sens_at_90spec": 0.6893,
+      "spec_at_90sens": 0.7143,
+      "brier": 0.1202,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8933,
+        0.8899,
+        0.8885,
+        0.8943,
+        0.8874
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "xgboost",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.8724,
+      "auc_ci_low": 0.8371,
+      "auc_ci_high": 0.9042,
+      "sens_at_90spec": 0.6497,
+      "spec_at_90sens": 0.6484,
+      "brier": 0.1332,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8747,
+        0.8616,
+        0.8593,
+        0.8668,
+        0.8544
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "lightgbm",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.8751,
+      "auc_ci_low": 0.8414,
+      "auc_ci_high": 0.9064,
+      "sens_at_90spec": 0.5989,
+      "spec_at_90sens": 0.6786,
+      "brier": 0.1404,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8731,
+        0.8668,
+        0.866,
+        0.8675,
+        0.8575
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "svm_rbf",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.8655,
+      "auc_ci_low": 0.8304,
+      "auc_ci_high": 0.8979,
+      "sens_at_90spec": 0.7119,
+      "spec_at_90sens": 0.5137,
+      "brier": 0.1267,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8647,
+        0.8569,
+        0.8649,
+        0.864,
+        0.8656
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "mlp",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.839,
+      "auc_ci_low": 0.8,
+      "auc_ci_high": 0.8743,
+      "sens_at_90spec": 0.6045,
+      "spec_at_90sens": 0.4176,
+      "brier": 0.1654,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.7873,
+        0.7782,
+        0.7644,
+        0.7334,
+        0.7756
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "naive_bayes",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.8714,
+      "auc_ci_low": 0.8357,
+      "auc_ci_high": 0.9034,
+      "sens_at_90spec": 0.7062,
+      "spec_at_90sens": 0.5385,
+      "brier": 0.1395,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8707,
+        0.8606,
+        0.8702,
+        0.8637,
+        0.8679
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "knn",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.8552,
+      "auc_ci_low": 0.8187,
+      "auc_ci_high": 0.8893,
+      "sens_at_90spec": 0.6407,
+      "spec_at_90sens": 0.5684,
+      "brier": 0.1412,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8427,
+        0.8364,
+        0.8482,
+        0.8555,
+        0.8527
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "logistic_regression",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.9424,
+      "auc_ci_low": 0.9179,
+      "auc_ci_high": 0.9634,
+      "sens_at_90spec": 0.8588,
+      "spec_at_90sens": 0.8379,
+      "brier": 0.085,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.9254,
+        0.9417,
+        0.9362,
+        0.9388,
+        0.9418
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "random_forest",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.958,
+      "auc_ci_low": 0.9408,
+      "auc_ci_high": 0.9728,
+      "sens_at_90spec": 0.8757,
+      "spec_at_90sens": 0.8764,
+      "brier": 0.0851,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.9537,
+        0.9557,
+        0.9554,
+        0.9558,
+        0.9584
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "xgboost",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.9537,
+      "auc_ci_low": 0.9355,
+      "auc_ci_high": 0.9688,
+      "sens_at_90spec": 0.8588,
+      "spec_at_90sens": 0.8352,
+      "brier": 0.0774,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.9426,
+        0.953,
+        0.9401,
+        0.9529,
+        0.9508
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "lightgbm",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.9588,
+      "auc_ci_low": 0.9423,
+      "auc_ci_high": 0.9728,
+      "sens_at_90spec": 0.8757,
+      "spec_at_90sens": 0.8516,
+      "brier": 0.0744,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.9458,
+        0.955,
+        0.9477,
+        0.9552,
+        0.9517
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "svm_rbf",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.9408,
+      "auc_ci_low": 0.9179,
+      "auc_ci_high": 0.9607,
+      "sens_at_90spec": 0.8418,
+      "spec_at_90sens": 0.8269,
+      "brier": 0.0832,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.9348,
+        0.9346,
+        0.941,
+        0.9375,
+        0.9398
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "mlp",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.9233,
+      "auc_ci_low": 0.8967,
+      "auc_ci_high": 0.9449,
+      "sens_at_90spec": 0.7684,
+      "spec_at_90sens": 0.7555,
+      "brier": 0.1262,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.8865,
+        0.6867,
+        0.8577,
+        0.8479,
+        0.9041
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "naive_bayes",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.9007,
+      "auc_ci_low": 0.8671,
+      "auc_ci_high": 0.929,
+      "sens_at_90spec": 0.7797,
+      "spec_at_90sens": 0.7088,
+      "brier": 0.1217,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.891,
+        0.896,
+        0.876,
+        0.8923,
+        0.8919
+      ]
+    },
+    {
+      "dataset": "kaggle_pcos",
+      "model": "knn",
+      "feature_set": "with_labs_reference",
+      "auc_mean": 0.9385,
+      "auc_ci_low": 0.9154,
+      "auc_ci_high": 0.9579,
+      "sens_at_90spec": 0.8119,
+      "spec_at_90sens": 0.7743,
+      "brier": 0.1007,
+      "n_folds": 5,
+      "n_seeds": 5,
+      "seed_aucs": [
+        0.9251,
+        0.9315,
+        0.9352,
+        0.9302,
+        0.9329
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "feature_set": "symptom_only",
+      "model_a": "knn",
+      "model_b": "random_forest",
+      "auc_a": 0.8908,
+      "auc_b": 0.8889,
+      "test": "paired_bootstrap",
+      "n_boot": 2000,
+      "p_value": 0.8205
+    },
+    {
+      "feature_set": "symptom_plus_vitals",
+      "model_a": "random_forest",
+      "model_b": "logistic_regression",
+      "auc_a": 0.8943,
+      "auc_b": 0.8784,
+      "test": "paired_bootstrap",
+      "n_boot": 2000,
+      "p_value": 0.0465
+    },
+    {
+      "feature_set": "with_labs_reference",
+      "model_a": "lightgbm",
+      "model_b": "random_forest",
+      "auc_a": 0.9588,
+      "auc_b": 0.958,
+      "test": "paired_bootstrap",
+      "n_boot": 2000,
+      "p_value": 0.8145
+    }
+  ]
+}
