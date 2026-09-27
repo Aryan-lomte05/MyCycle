@@ -1,0 +1,9 @@
+# Dataset checksums for MyCycle
+# Source: Kaggle PCOS dataset (https://www.kaggle.com/datasets/prasoonkottarathil/polycystic-ovary-syndrome-pcos)
+# Verified on 2026-09-27. Do not commit raw data. These are the checksums for the downloaded files in data/raw/.
+
+SHA-256  data/raw/PCOS_data_without_infertility.xlsx
+b663ec9f491be419718e0935eb1c5b6c4923b527282230a73cfc9aca8533f742
+
+SHA-256  data/raw/PCOS_infertility.csv
+2e4f06b6dc68450c0e05d7a433dabd4ff50ad2edb7e9302d6103449a95b63ad3

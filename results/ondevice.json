@@ -1,0 +1,8 @@
+{
+  "model_size_kb": 24.165,
+  "inference_latency_ms_p50": 0.039,
+  "inference_latency_ms_p95": 0.064,
+  "peak_memory_mb": 26.7,
+  "device": "Windows laptop CPU (Python 3.11, ONNX Runtime CPUExecutionProvider)",
+  "parity_max_abs_diff": 5.9605e-08
+}
