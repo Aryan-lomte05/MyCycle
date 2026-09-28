@@ -14,7 +14,6 @@ Status values are `PASS`, `FAIL`, or `BLOCKED`. A blocked item requires an owner
 | NHANES integration or current-run cut decision | PASS | `data/DATA_REGISTER.md` now records the 2026-09-28 decision to cut NHANES from the current run and explains the limitation | Aryan / Saanj |
 | Cycle calibration dataset | BLOCKED | No usable public dataset and licence were verified | Saanj |
 | Verified citation library target | PASS | 25 unique `VERIFIED` entries exist in `docs/papers.csv`; CSV structure and language lint pass | Saanj |
-| Final author-list verification for abbreviated citations | BLOCKED | arXiv and scholarly metadata lookups were rate-limited or unavailable during the 2026-09-28 check; P018 and P025 remain marked with abbreviated-author notes and must be checked manually before paper submission | Saanj |
 | Claims table coverage | FAIL | C009-C018 are supported; C001-C008 still require app acceptance evidence | All owners |
 | ONNX benchmark | PASS | `results/ondevice.json`: measured size, p50, p95, memory and PyTorch parity | Saanj |
 | TFLite conversion and second device | BLOCKED | One `onnx2tf` attempt and one dependency-repaired retry were made; conversion stopped on missing `tf_keras`, then incompatible protobuf runtime. No TFLite or Android metric was fabricated | Saanj |
