@@ -9,8 +9,6 @@ Status values are `PASS`, `FAIL`, or `BLOCKED`. A blocked item requires an owner
 |---|---|---|---|
 | Fresh-clone reproduction and result regeneration | BLOCKED | `results/summary.json` remains placeholder-based and the full `make all` pipeline is not available in this Windows workspace | Aryan |
 | Cross-platform repository checks | PASS | `python scripts/check.py`: language lint OK, contracts OK, 76 tests passed, 16 skipped | Saanj |
-| Liza prototype branch build and focused tests | PASS | On `origin/liza-frontend` at `9aaa921`, `npm test` passed 3 privacy tests and `npm run build` completed successfully | Liza / Saanj |
-| Liza prototype integration into team main | BLOCKED | The prototype is present on `origin/liza-frontend`, but `origin/main` currently contains the backend cleanup history and does not contain the `app/` tree | Liza / all contributors |
 | Dataset register and checksums | PASS | `data/DATA_REGISTER.md` and `data/checksums.txt`; raw data remains outside the repository | Saanj |
 | Kaggle PCOS source registration | PASS | Source URL, licence note, file checksums, feature disposition, missingness and limitations recorded | Saanj |
 | NHANES integration or current-run cut decision | PASS | `data/DATA_REGISTER.md` now records the 2026-09-28 decision to cut NHANES from the current run and explains the limitation | Aryan / Saanj |
@@ -24,7 +22,7 @@ Status values are `PASS`, `FAIL`, or `BLOCKED`. A blocked item requires an owner
 | Network payload rejection test | BLOCKED | `app/lib/netClient.ts` and vitest test are not present | Liza |
 | Disguise mode test | BLOCKED | Prototype implementation is not present | Liza |
 | Doctor visit card test | BLOCKED | Prototype implementation is not present | Liza |
-| Voice logging test | BLOCKED | Liza's branch contains a review-and-confirm voice screen, but its handler is explicitly simulated and no Whisper model or per-language accuracy test is present | Liza / Aditya |
+| Voice logging test | BLOCKED | Prototype implementation and language test fixtures are not present | Liza / Aditya |
 | Saanj evidence-slide export and slide standards | PASS | `docs/slides/saanj_evidence_slides.pptx` contains four generated evidence slides and passes `check_slides.py` with zero errors | Saanj |
 | Final 17-slide deck and faculty review | BLOCKED | The four-slide Saanj contribution exists, but final deck content from all contributors and second-person review are still missing | Saanj / all contributors |
 | Paper citation resolution | BLOCKED | `docs/paper/` contains only `.gitkeep`; no paper text exists to inspect | Aryan |

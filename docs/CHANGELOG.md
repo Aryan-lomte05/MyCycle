@@ -8,7 +8,6 @@ Two lines per change: what changed, how to rerun.
 - 2026-09-27 Saanj: added a reproducible four-slide evidence contribution with generated PPTX and notes, covering data roles, preprocessing, ONNX feasibility, and claims status. Rerun: `python scripts/build_saanj_slides.py` and `python scripts/check.py`.
 - 2026-09-28 Saanj: documented the current-run NHANES cut decision and recorded the attempted ONNX-to-TFLite conversion failures without generating unsupported mobile metrics. Rerun: `python scripts/check.py`.
 - 2026-09-28 Saanj: recorded the blocked final author-list verification for two citations after scholarly metadata services rate-limited the lookup; no author names were guessed. Rerun: `python scripts/check.py`.
-- 2026-09-28 Saanj: validated Liza's frontend branch with three passing privacy tests and a successful production build, and recorded that the prototype remains branch-only with simulated voice logging. Rerun: `npm test` and `npm run build` from `origin/liza-frontend`.
 - 2026-09-26 Aryan: repo scaffold, contracts frozen (schema v1), lint and validator, placeholder results, demo users v0. Rerun: `make check`.
 - 2026-09-26 Aryan: Contract enums extended additively (fedprox, fedper, ewma, isolation_forest, lstm, cnn1d) in schema and CLAUDE.md. Rerun: `make check`.
 - 2026-09-26 Aryan: added scripts/check.py (cross-platform `make check`), project name left TBD in README. Rerun: `python scripts/check.py`.
