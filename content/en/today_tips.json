@@ -1,0 +1,43 @@
+{
+  "privacy_note": "Your cycle logs stay on your phone. You choose what to share.",
+  "phases": {
+    "menstrual": {
+      "phase_name": "Menstrual Phase",
+      "tips": [
+        "Today may be a low-energy day. Offer rest, a warm drink, or take over one household chore.",
+        "Comfort and patience matter today. Keep warm, wholesome meals accessible and support time to rest.",
+        "Physical ease is helpful during this phase. A gentle check-in or hot compress can provide welcome comfort."
+      ]
+    },
+    "follicular": {
+      "phase_name": "Follicular Phase",
+      "tips": [
+        "Energy levels often begin to rise during this phase. It is a good window for shared walks and creative ideas.",
+        "A positive environment encourages momentum. Support new plans or activities with enthusiasm.",
+        "As vitality returns, encourage balanced nutrition and active routines without rushing."
+      ]
+    },
+    "ovulation": {
+      "phase_name": "Ovulation Phase",
+      "tips": [
+        "Energy and stamina typically peak during ovulation. A wonderful time for social plans and active days.",
+        "Communication and focus are often high. Great for meaningful discussions and collaborative tasks.",
+        "Support regular hydration and nourishing snacks to sustain elevated daily activity."
+      ]
+    },
+    "luteal": {
+      "phase_name": "Luteal Phase",
+      "tips": [
+        "Energy may gradually taper down. Practicing patience and creating a peaceful space is especially supportive.",
+        "Appetite shifts and tiredness are common. Having comforting snacks and reducing evening stress helps.",
+        "Help lighten daily responsibilities where practical and offer a calm, non-judgmental presence."
+      ]
+    }
+  },
+  "status_notes": {
+    "language": "en",
+    "role_neutral": true,
+    "fluent_speaker_review": "completed for English",
+    "audio_recordings": "planned, not yet done"
+  }
+}
