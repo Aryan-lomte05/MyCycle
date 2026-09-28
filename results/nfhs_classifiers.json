@@ -1,0 +1,590 @@
+{
+  "meta": {
+    "seed": 0,
+    "git_commit": "853c09f6c3e1e35ede9f71ee459945d9e5af62a1-dirty",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "n_folds": 5,
+    "excluded_models": [
+      "svm_rbf"
+    ],
+    "exclusion_reason": "SVM RBF training cost is superlinear in n; infeasible at this dataset's scale in the course time budget",
+    "subsample_n_requested": 6000,
+    "n_rows_full_eligible": 136136
+  },
+  "datasets": [
+    {
+      "id": "nfhs5_anemia",
+      "n_rows": 126625,
+      "n_features_used": 92,
+      "label_definition": "WHO threshold on real haemoglobin, non-pregnant respondents (Hg_levelAdjusted < 12.0 g/dL); UNVERIFIED until the WHO source is read and logged in docs/papers.csv",
+      "modeling_subsample_n": 6000,
+      "modeling_label_rate": 0.5882
+    },
+    {
+      "id": "nfhs5_thyroid",
+      "n_rows": 126625,
+      "n_features_used": 91,
+      "label_definition": "self-reported existing thyroid condition (weaker than a TSH lab label; see sim/nfhs_data.py)",
+      "modeling_subsample_n": 6000,
+      "modeling_label_rate": 0.0197
+    }
+  ],
+  "rows": [
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "logistic_regression",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.6149,
+      "auc_ci_low": 0.6009,
+      "auc_ci_high": 0.6283,
+      "sens_at_90spec": 0.1876,
+      "spec_at_90sens": 0.1947,
+      "brier": 0.2406,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.6106,
+        0.6133,
+        0.613
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "random_forest",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.6097,
+      "auc_ci_low": 0.5954,
+      "auc_ci_high": 0.6241,
+      "sens_at_90spec": 0.1776,
+      "spec_at_90sens": 0.1898,
+      "brier": 0.2334,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.6006,
+        0.6034,
+        0.6079
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "xgboost",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.607,
+      "auc_ci_low": 0.5929,
+      "auc_ci_high": 0.6213,
+      "sens_at_90spec": 0.1593,
+      "spec_at_90sens": 0.1801,
+      "brier": 0.2408,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5971,
+        0.6032,
+        0.5997
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "lightgbm",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.5995,
+      "auc_ci_low": 0.5853,
+      "auc_ci_high": 0.614,
+      "sens_at_90spec": 0.1723,
+      "spec_at_90sens": 0.1825,
+      "brier": 0.2429,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5825,
+        0.595,
+        0.5939
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "mlp",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.5805,
+      "auc_ci_low": 0.5659,
+      "auc_ci_high": 0.595,
+      "sens_at_90spec": 0.1363,
+      "spec_at_90sens": 0.1732,
+      "brier": 0.2384,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.568,
+        0.5574,
+        0.5585
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "naive_bayes",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.5732,
+      "auc_ci_low": 0.5584,
+      "auc_ci_high": 0.5873,
+      "sens_at_90spec": 0.1272,
+      "spec_at_90sens": 0.176,
+      "brier": 0.3788,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5714,
+        0.5615,
+        0.5647
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "knn",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.5343,
+      "auc_ci_low": 0.5198,
+      "auc_ci_high": 0.5492,
+      "sens_at_90spec": 0.1196,
+      "spec_at_90sens": 0.1262,
+      "brier": 0.2501,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5267,
+        0.5329,
+        0.5348
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "logistic_regression",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.6197,
+      "auc_ci_low": 0.6051,
+      "auc_ci_high": 0.6328,
+      "sens_at_90spec": 0.1967,
+      "spec_at_90sens": 0.2028,
+      "brier": 0.2395,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.6154,
+        0.6185,
+        0.6176
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "random_forest",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.6131,
+      "auc_ci_low": 0.5988,
+      "auc_ci_high": 0.6273,
+      "sens_at_90spec": 0.1859,
+      "spec_at_90sens": 0.209,
+      "brier": 0.2329,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.6037,
+        0.6081,
+        0.6119
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "xgboost",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.6142,
+      "auc_ci_low": 0.6,
+      "auc_ci_high": 0.6284,
+      "sens_at_90spec": 0.1777,
+      "spec_at_90sens": 0.2129,
+      "brier": 0.2389,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.602,
+        0.6104,
+        0.608
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "lightgbm",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.6078,
+      "auc_ci_low": 0.5935,
+      "auc_ci_high": 0.6223,
+      "sens_at_90spec": 0.1624,
+      "spec_at_90sens": 0.1987,
+      "brier": 0.2413,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5949,
+        0.5961,
+        0.6001
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "mlp",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.5881,
+      "auc_ci_low": 0.5739,
+      "auc_ci_high": 0.6021,
+      "sens_at_90spec": 0.1505,
+      "spec_at_90sens": 0.1995,
+      "brier": 0.2369,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5721,
+        0.562,
+        0.5809
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "naive_bayes",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.5749,
+      "auc_ci_low": 0.5602,
+      "auc_ci_high": 0.5889,
+      "sens_at_90spec": 0.1306,
+      "spec_at_90sens": 0.1793,
+      "brier": 0.3775,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5736,
+        0.5631,
+        0.5666
+      ]
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "model": "knn",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.5453,
+      "auc_ci_low": 0.5303,
+      "auc_ci_high": 0.5605,
+      "sens_at_90spec": 0.1255,
+      "spec_at_90sens": 0.1372,
+      "brier": 0.2478,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.537,
+        0.5418,
+        0.5451
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "logistic_regression",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.7272,
+      "auc_ci_low": 0.6738,
+      "auc_ci_high": 0.7803,
+      "sens_at_90spec": 0.3983,
+      "spec_at_90sens": 0.2191,
+      "brier": 0.1287,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7341,
+        0.7184,
+        0.7057
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "random_forest",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.7547,
+      "auc_ci_low": 0.7091,
+      "auc_ci_high": 0.7996,
+      "sens_at_90spec": 0.3768,
+      "spec_at_90sens": 0.3986,
+      "brier": 0.0188,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7413,
+        0.7414,
+        0.7367
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "xgboost",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.7027,
+      "auc_ci_low": 0.6545,
+      "auc_ci_high": 0.7525,
+      "sens_at_90spec": 0.2966,
+      "spec_at_90sens": 0.2378,
+      "brier": 0.0497,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7089,
+        0.6874,
+        0.6741
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "lightgbm",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.7146,
+      "auc_ci_low": 0.6672,
+      "auc_ci_high": 0.762,
+      "sens_at_90spec": 0.2881,
+      "spec_at_90sens": 0.3079,
+      "brier": 0.0202,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7113,
+        0.6927,
+        0.6855
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "mlp",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.4755,
+      "auc_ci_low": 0.425,
+      "auc_ci_high": 0.5245,
+      "sens_at_90spec": 0.0508,
+      "spec_at_90sens": 0.1095,
+      "brier": 0.0383,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5082,
+        0.4337,
+        0.4866
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "naive_bayes",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.5493,
+      "auc_ci_low": 0.5199,
+      "auc_ci_high": 0.5756,
+      "sens_at_90spec": 0.1127,
+      "spec_at_90sens": 0.1974,
+      "brier": 0.8179,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5355,
+        0.5335,
+        0.5285
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "knn",
+      "feature_set": "symptom_only",
+      "auc_mean": 0.6089,
+      "auc_ci_low": 0.5593,
+      "auc_ci_high": 0.6576,
+      "sens_at_90spec": 0.29,
+      "spec_at_90sens": 0.1305,
+      "brier": 0.0194,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.6046,
+        0.6016,
+        0.5967
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "logistic_regression",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.7259,
+      "auc_ci_low": 0.6722,
+      "auc_ci_high": 0.7786,
+      "sens_at_90spec": 0.4068,
+      "spec_at_90sens": 0.2032,
+      "brier": 0.1274,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7316,
+        0.7164,
+        0.7075
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "random_forest",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.7684,
+      "auc_ci_low": 0.7297,
+      "auc_ci_high": 0.8075,
+      "sens_at_90spec": 0.3469,
+      "spec_at_90sens": 0.4848,
+      "brier": 0.0189,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7548,
+        0.7599,
+        0.737
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "xgboost",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.7191,
+      "auc_ci_low": 0.6704,
+      "auc_ci_high": 0.763,
+      "sens_at_90spec": 0.3051,
+      "spec_at_90sens": 0.2717,
+      "brier": 0.0424,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7193,
+        0.7039,
+        0.6882
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "lightgbm",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.7359,
+      "auc_ci_low": 0.6924,
+      "auc_ci_high": 0.7781,
+      "sens_at_90spec": 0.339,
+      "spec_at_90sens": 0.3975,
+      "brier": 0.0198,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.7394,
+        0.7121,
+        0.7119
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "mlp",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.5352,
+      "auc_ci_low": 0.4806,
+      "auc_ci_high": 0.5894,
+      "sens_at_90spec": 0.1525,
+      "spec_at_90sens": 0.1025,
+      "brier": 0.0357,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.4459,
+        0.5604,
+        0.5368
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "naive_bayes",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.5493,
+      "auc_ci_low": 0.5199,
+      "auc_ci_high": 0.5756,
+      "sens_at_90spec": 0.1127,
+      "spec_at_90sens": 0.1974,
+      "brier": 0.8179,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.5355,
+        0.5335,
+        0.5285
+      ]
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "model": "knn",
+      "feature_set": "symptom_plus_vitals",
+      "auc_mean": 0.6145,
+      "auc_ci_low": 0.5658,
+      "auc_ci_high": 0.6623,
+      "sens_at_90spec": 0.303,
+      "spec_at_90sens": 0.1318,
+      "brier": 0.0193,
+      "n_folds": 5,
+      "n_seeds": 3,
+      "seed_aucs": [
+        0.6109,
+        0.6093,
+        0.6048
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "dataset": "nfhs5_anemia",
+      "feature_set": "symptom_only",
+      "model_a": "logistic_regression",
+      "model_b": "random_forest",
+      "auc_a": 0.6149,
+      "auc_b": 0.6097,
+      "test": "paired_bootstrap",
+      "n_boot": 2000,
+      "p_value": 0.2875
+    },
+    {
+      "dataset": "nfhs5_anemia",
+      "feature_set": "symptom_plus_vitals",
+      "model_a": "logistic_regression",
+      "model_b": "xgboost",
+      "auc_a": 0.6197,
+      "auc_b": 0.6142,
+      "test": "paired_bootstrap",
+      "n_boot": 2000,
+      "p_value": 0.248
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "feature_set": "symptom_only",
+      "model_a": "random_forest",
+      "model_b": "logistic_regression",
+      "auc_a": 0.7547,
+      "auc_b": 0.7272,
+      "test": "paired_bootstrap",
+      "n_boot": 2000,
+      "p_value": 0.1935
+    },
+    {
+      "dataset": "nfhs5_thyroid",
+      "feature_set": "symptom_plus_vitals",
+      "model_a": "random_forest",
+      "model_b": "lightgbm",
+      "auc_a": 0.7684,
+      "auc_b": 0.7359,
+      "test": "paired_bootstrap",
+      "n_boot": 2000,
+      "p_value": 0.0235
+    }
+  ]
+}

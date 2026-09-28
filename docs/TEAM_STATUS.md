@@ -19,7 +19,7 @@ Each person owns a folder per `CLAUDE.md` section 3: Aryan = `/sim`, `/exports`,
 | A1 | Synthetic simulator | Done, tests pass, validated against real data (FedCycleData) |
 | A2 | Detectors (z-score, CUSUM, EWMA, fixed-threshold, isolation forest, hybrid) | Done, tuned and measured |
 | A3 | PCOS classifier comparison (kaggle_pcos, real data) | Done, 8 models, real AUCs |
-| A3 ext | NFHS-5 anemia + thyroid classifiers (real data, added beyond the original plan) | Code done, run in progress (background job `bzc4icrb6`) |
+| A3 ext | NFHS-5 anemia + thyroid classifiers (real data, added beyond the original plan) | Done. Anemia AUC 0.62 (near chance, honest negative result), thyroid AUC 0.77 |
 | A4 | GRU sequence model, ONNX export, personalization | Done. Honest result: GRU underperforms Tier 1 |
 | A5 | Federated learning + differential privacy | Done. Found and fixed a real DP-accounting bug (epsilon was understated up to 4x) by validating against Opacus, as the task required |
 | A6 | Technique comparison doc (`docs/TECHNIQUE_COMPARISON.md`) | **Not started** |
