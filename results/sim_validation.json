@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "seed": 42,
+    "git_commit": "308bf840547932579182d54c0a56b7cd498939ec",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "real_source": "FedCycleData (Kaggle nikitabisht/menstrual-cycle-data)",
+    "real_source_provenance": "UNVERIFIED beyond the Kaggle page, see data/DATA_REGISTER.md",
+    "limits": "validates only the baseline (non-drift) cycle-length shape, not the drift patterns, since FedCycleData carries no PCOS/anemia/thyroid labels"
+  },
+  "real": {
+    "n_women": 159,
+    "n_cycles": 1665,
+    "cycle_length_mean": 29.2991,
+    "cycle_length_sd": 3.8879,
+    "within_user_sd_median": 2.1733,
+    "share_outside_24_38": 0.0444
+  },
+  "simulated": {
+    "baseline_cycle_length_mean": 29.0523,
+    "baseline_cycle_length_sd": 3.219,
+    "baseline_within_user_sd_median": 1.8509,
+    "baseline_share_outside_24_38": 0.0455
+  },
+  "comparison": {
+    "cycle_length_mean": {
+      "real": 29.2991,
+      "simulated": 29.0523,
+      "abs_diff": 0.2468
+    },
+    "cycle_length_sd": {
+      "real": 3.8879,
+      "simulated": 3.219,
+      "abs_diff": 0.6689
+    },
+    "within_user_sd_median": {
+      "real": 2.1733,
+      "simulated": 1.8509,
+      "abs_diff": 0.3224
+    },
+    "share_outside_24_38": {
+      "real": 0.0444,
+      "simulated": 0.0455,
+      "abs_diff": 0.0011
+    }
+  }
+}

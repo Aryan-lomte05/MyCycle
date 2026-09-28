@@ -59,6 +59,15 @@ Common to the three pattern drifts: onset cycle k uniform in 5..10, then a linea
 - No seasonality, contraception, pregnancy, postpartum or perimenopause effects.
 - Logging behaviour is perfect apart from 2 percent random missingness. Real users skip logging, and not at random.
 
-## Marginal validation (pending)
+## Marginal validation (done, 2026-09-27)
 
-`results/sim_validation.json` will compare simulated baseline cycle length mean and SD with the real calibration dataset once Saanj confirms the dataset exists and has a licence we can use. Until then, `results/sim/meta.json` records only the simulated marginals. Those numbers restate our own assumptions and are not evidence of realism.
+The calibration dataset exists: FedCycleData (Kaggle `nikitabisht/menstrual-cycle-data`), 159 women, 1,665 cycles, natural family planning charting data. Provenance beyond the Kaggle page is UNVERIFIED (no paper cited by the uploader), so it is used only for marginal comparison, never as a cited clinical source. Fetch with `data/download_cycle_calibration.py`, compare with `python -m sim.cycle_calibration` (writes `results/sim_validation.json`).
+
+| Statistic | Real (FedCycleData) | Simulated (baseline cycles) | Abs diff |
+|---|---|---|---|
+| Cycle length mean | 29.30 days | 29.05 days | 0.25 |
+| Cycle length SD (population) | 3.89 days | 3.22 days | 0.67 |
+| Within-user SD (median) | 2.17 days | 1.85 days | 0.32 |
+| Share outside 24-38 days | 4.44% | 4.55% | 0.11 pp |
+
+Reading this honestly: the mean and the share of unusually short/long cycles match closely. The simulator is somewhat less variable than reality, both in population SD and in within-user SD, meaning real cycles wander a bit more than `SimConfig.sigma_range = U(1.0, 3.0)` assumes. This is a real limit, not something to quietly widen after the fact: if `sigma_range` is revisited, it should be with this comparison in hand, and rerun. What this validates: the baseline (non-drift) shape only. It cannot and does not validate the drift patterns (PCOS/anemia/thyroid), since FedCycleData carries no diagnosis labels.

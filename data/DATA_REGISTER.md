@@ -30,12 +30,44 @@ One section per dataset used, plus datasets considered and rejected. No dataset 
 
 ## nhanes
 
-- **Status:** not yet integrated. Per `docs/OPEN_QUESTIONS.md` (2026-09-26), this was flagged as a P1 cut risk given the Sunday-noon time budget. As of 2026-09-27, symptom-only anemia and thyroid screening is reported through the simulator's `anemia_pattern` and `thyroid_pattern` drift detection only (`results/baseline_detection.json`), not through a trained classifier on real survey data.
-- **If revisited:** would need NHANES demographics, body measures, a reproductive/general health questionnaire, complete blood count (hemoglobin) and thyroid profile (TSH) files, matched by respondent sequence number, with sample weights applied in evaluation and pregnant respondents excluded. No file has been downloaded or verified yet.
+- **Status:** superseded by nfhs5 (below) as of 2026-09-27. NHANES (US) was the original plan (aryan.md A3), but NFHS-5 is a real, large, India-specific survey that better matches this project's population, and was found and integrated instead. NHANES was never downloaded. If NHANES is wanted later for a US-population comparison, the plan in the previous version of this file (demographics, body measures, a reproductive/general health questionnaire, complete blood count and TSH files, matched by respondent sequence number, sample weights, pregnant respondents excluded) still applies.
+
+## nfhs5
+
+- **Name:** National Family Health Survey, Round 5 (India, 2019-2021), redistributed as a single cleaned CSV.
+- **Source URL:** https://www.kaggle.com/datasets/ravisinghiitbhu/nfhs5
+- **Access date:** 2026-09-27
+- **Licence and terms:** CC0-1.0 (public domain). Could be committed under this licence, but CLAUDE.md keeps all raw data out of the repo regardless.
+- **File names and SHA-256 checksums:** `Final.csv`: `503e36565b41542ec2df5611919cbf3301caccc73997f1699fee819fb5683ecf`. Verified by `data/download_nfhs5.py`.
+- **Rows:** 136,136 women aged 15-49, one row per respondent. No missing values in any column (the file was already cleaned by the uploader; we cannot verify what imputation, if any, they used before we received it, which is itself a limitation).
+- **Provenance:** NFHS is India's official Demographic and Health Survey, run by the Ministry of Health and Family Welfare. The Kaggle redistribution's own preprocessing (which of the many official NFHS-5 variables were kept, how they were renamed and cleaned) has not been cross-checked against the official microdata by this team; treat the exact variable definitions as UNVERIFIED until someone reads the official NFHS-5 recode manual and confirms them, particularly `Hg_levelAdjusted` (assumed to be haemoglobin in tenths of a g/dL, altitude/smoking-adjusted, consistent with standard DHS/NFHS practice) and `Anemia_level` (assumed to be the standard WHO/DHS four-level classification; not used as a feature or label, both computed independently, see below).
+- **Two tasks, both built by us, not columns already in the file:**
+  - **anemia** (binary): `Hg_levelAdjusted < 120` (WHO cutoff, 12.0 g/dL, for non-pregnant women), among respondents with `Curr_Preg == 0`. The WHO cutoff itself is UNVERIFIED (widely cited, not yet independently confirmed by reading the WHO source; to be marked VERIFIED in `docs/papers.csv` once someone does).
+  - **thyroid** (binary): the file's own `Thyroid` column, a self-reported existing diagnosis. This is weaker evidence than a TSH lab-based label: it requires the respondent to already have been diagnosed and to remember to report it, so it undercounts real thyroid dysfunction. Stated as a limitation in every result that uses it.
+- **Columns kept and dropped:** full logic in `sim/nfhs_data.py`. `Hg_levelAdjusted`, `Anemia_level` (both lab-derived) and `ultrasound` (imaging-adjacent) are dropped from every feature set for both tasks, on top of each task's own label. The other task's label is kept as a feature only when self-reported (`Thyroid` is a legitimate feature for the anemia task; the engineered `anemia` column is not used as a feature for the thyroid task, since it is lab-derived). `Curr_Preg` is used only as a filter, then dropped.
+- **Label definitions:** see the two tasks above.
+- **Missing data summary:** none (see provenance caveat above).
+- **Known biases and limitations:** self-reported thyroid diagnosis undercounts true prevalence (thyroid label). India-only, so results describe this population, not a global one; that is a fit for the project's own India focus, not a limitation for this project's purposes, but should not be generalized elsewhere without saying so. The survey samples ever-married women aged 15-49 in most rounds; check this before quoting prevalence rates as general population rates.
+- **Preprocessing steps in order:** load `Final.csv` -> filter to `Curr_Preg == 0` -> engineer `bmi = Resp_weight / Resp_height^2` (`Resp_height` is already in metres in this file, confirmed by its summary statistics, not assumed) -> engineer `anemia` label -> per task, per fold: median-impute (there is nothing to impute in practice, given no missing values), one-hot encode `State` (the only true categorical column, 36 India states/UTs; every other column is already numeric, including several ordinal-coded ones such as `Edu_level` and `Wealth_Idx_Lb` that are used as plain numeric features, a simplification), standard-scale numeric columns.
+- **Computational deviations from the kaggle_pcos protocol**, both documented in `sim/nfhs_classifiers.py` and in every output file's `meta`: SVM (RBF) excluded (training cost is superlinear in row count; infeasible at this scale in the course time budget, a computational exclusion under requirements.md T1, not an accuracy judgment); each task modeled on a stratified-by-label 6,000-row subsample of the 126,625 eligible rows, not the full population, and reduced to 3 seeds instead of 5 (still bootstrap-CI'd), for the same reason.
+- **Script that produces the processed file:** `sim/nfhs_data.py` (`load()`, `feature_matrix()`, `stratified_subsample()`). No separate processed file is written.
+- **Used for:** `sim/nfhs_classifiers.py`, `results/nfhs_classifiers.json`.
+- **Which results depend on it:** `results/nfhs_classifiers.json`.
 
 ## cycle_calibration
 
-- **Status:** not yet found. `docs/OPEN_QUESTIONS.md` (2026-09-26) asks whether the Marquette/Fehring cycle-length dataset exists with a usable licence and size. Not resolved as of 2026-09-27. Until it is, `sim/simulator.py` marginals are validated only against the assumptions listed in `sim/ASSUMPTIONS.md`, which is not independent validation.
+- **Name:** FedCycleData, natural family planning cycle charts.
+- **Source URL:** https://www.kaggle.com/datasets/nikitabisht/menstrual-cycle-data
+- **Access date:** 2026-09-27. Resolves the open question from 2026-09-26 (does a real cycle-length dataset exist).
+- **Licence and terms:** listed "unknown" on Kaggle. Used read-only for marginal comparison (mean, SD, share of unusual cycles); never redistributed, never committed to the repo.
+- **File names and SHA-256 checksums:** `FedCycleData071012 (2).csv`: `9fa76583129db58af44adb21a0612217b207120fb61d478fb343a61291732a89`. Verified by `data/download_cycle_calibration.py`.
+- **Rows:** 1,665 cycles from 159 women (median 12 cycles per woman). The exact clinical or research context behind the original collection is UNVERIFIED (the Kaggle page names no paper); this is used as a plausibility check only, never cited as a clinical source.
+- **Label definition:** none used; this is a validation dataset, not a training dataset.
+- **Missing data summary:** not audited in detail; only `LengthofCycle` is used.
+- **Known biases and limitations:** women using natural family planning charting are not a random sample of all menstruating women (likely more engaged with tracking, possibly more likely to be trying to conceive or avoid pregnancy), so its marginals are a plausibility check, not ground truth for the general population.
+- **Preprocessing steps:** load, group by `ClientID`, compute population and within-user cycle-length statistics. Script: `sim/cycle_calibration.py`.
+- **Used for:** validating `sim/simulator.py`'s baseline (non-drift) marginals only, per `sim/ASSUMPTIONS.md`.
+- **Which results depend on it:** `results/sim_validation.json`.
 
 ## simulator
 
