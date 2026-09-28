@@ -1,0 +1,12 @@
+{
+  "id": "persona_4",
+  "name": "Persona 4: Flow Volume Shift",
+  "description": "Baseline light/medium flow shifting to intense heavy flow.",
+  "cycles": [
+    { "id": "p4_c1", "start_date": "2026-05-01", "cycle_length": 29, "flow_intensity": 1, "pain_score": 2, "symptoms": [] },
+    { "id": "p4_c2", "start_date": "2026-05-30", "cycle_length": 29, "flow_intensity": 1, "pain_score": 2, "symptoms": [] },
+    { "id": "p4_c3", "start_date": "2026-06-28", "cycle_length": 28, "flow_intensity": 2, "pain_score": 3, "symptoms": ["fatigue"] }
+  ],
+  "next_cycle": { "id": "p4_c4", "start_date": "2026-07-26", "cycle_length": 28, "flow_intensity": 4, "pain_score": 6, "symptoms": ["fatigue", "dizziness"] },
+  "expected_flag": "flag_flow_change"
+}

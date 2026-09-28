@@ -1,194 +1,160 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "MyCycle Backend API",
-    "description": "Privacy-preserving menstrual health screening platform: education content, reminder rules, and aggregate metrics. Your cycle logs stay on your phone. You choose what to share.",
+    "title": "MyCycle Family Sharing API",
     "version": "1.0.0"
   },
   "paths": {
-    "/v1/health": {
-      "get": {
-        "tags": [
-          "system"
-        ],
-        "summary": "Health Check",
-        "description": "Health check endpoint confirming API service status.",
-        "operationId": "health_check_v1_health_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/content/cards": {
-      "get": {
-        "tags": [
-          "content"
-        ],
-        "summary": "Get Cards",
-        "description": "Returns education cards for the requested language and optional topic.",
-        "operationId": "get_cards_v1_content_cards_get",
-        "parameters": [
-          {
-            "name": "lang",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "enum": [
-                "en",
-                "hi",
-                "mr"
-              ],
-              "type": "string",
-              "description": "Content language",
-              "default": "en",
-              "title": "Lang"
-            },
-            "description": "Content language"
-          },
-          {
-            "name": "topic",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "enum": [
-                    "pcos",
-                    "anemia",
-                    "thyroid",
-                    "myths",
-                    "general"
-                  ],
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Optional topic filter",
-              "title": "Topic"
-            },
-            "description": "Optional topic filter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/content/messages": {
-      "get": {
-        "tags": [
-          "content"
-        ],
-        "summary": "Get Messages",
-        "description": "Returns screening message copy and signal descriptions.",
-        "operationId": "get_messages_v1_content_messages_get",
-        "parameters": [
-          {
-            "name": "lang",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "enum": [
-                "en",
-                "hi",
-                "mr"
-              ],
-              "type": "string",
-              "description": "Message dictionary language",
-              "default": "en",
-              "title": "Lang"
-            },
-            "description": "Message dictionary language"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/reminders/rules": {
-      "get": {
-        "tags": [
-          "reminders"
-        ],
-        "summary": "Get Reminder Rules",
-        "description": "Returns rule definitions for on-device reminder scheduling and nudges.",
-        "operationId": "get_reminder_rules_v1_reminders_rules_get",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/metrics/aggregate": {
+    "/v1/family/invite": {
       "post": {
         "tags": [
-          "metrics"
+          "family"
         ],
-        "summary": "Submit Aggregate Metric",
-        "description": "Records an anonymized aggregate system count.",
-        "operationId": "submit_aggregate_metric_v1_metrics_aggregate_post",
+        "summary": "Create Family Invite",
+        "operationId": "create_family_invite_v1_family_invite_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AggregateMetricSubmission"
+                "$ref": "#/components/schemas/InviteRequest"
               }
             }
           },
           "required": true
         },
         "responses": {
-          "201": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InviteResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/family/accept": {
+      "post": {
+        "tags": [
+          "family"
+        ],
+        "summary": "Accept Family Invite",
+        "operationId": "accept_family_invite_v1_family_accept_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/family/view": {
+      "get": {
+        "tags": [
+          "family"
+        ],
+        "summary": "Get Family View",
+        "operationId": "get_family_view_v1_family_view_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedFamilyView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/family/revoke": {
+      "post": {
+        "tags": [
+          "family"
+        ],
+        "summary": "Revoke Family Invite",
+        "operationId": "revoke_family_invite_v1_family_revoke_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
@@ -212,38 +178,36 @@
   },
   "components": {
     "schemas": {
-      "AggregateMetricSubmission": {
+      "AcceptRequest": {
         "properties": {
-          "metric_name": {
-            "$ref": "#/components/schemas/AllowedMetric"
-          },
-          "value": {
-            "type": "number",
-            "minimum": 0.0,
-            "title": "Value",
-            "description": "Non-negative numeric count or aggregate score"
+          "invite_code": {
+            "type": "string",
+            "title": "Invite Code"
           }
         },
-        "additionalProperties": false,
         "type": "object",
         "required": [
-          "metric_name",
-          "value"
+          "invite_code"
         ],
-        "title": "AggregateMetricSubmission",
-        "description": "Aggregate metric payload. Extra fields are strictly forbidden."
+        "title": "AcceptRequest"
       },
-      "AllowedMetric": {
-        "type": "string",
-        "enum": [
-          "app_opened_count",
-          "federated_round_completed",
-          "screen_view_count",
-          "active_users_daily",
-          "content_card_opened",
-          "audio_listened_count"
+      "AcceptResponse": {
+        "properties": {
+          "session_token": {
+            "type": "string",
+            "title": "Session Token"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_token",
+          "role"
         ],
-        "title": "AllowedMetric"
+        "title": "AcceptResponse"
       },
       "HTTPValidationError": {
         "properties": {
@@ -257,6 +221,94 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "InviteRequest": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "expiry_hours": {
+            "type": "integer",
+            "title": "Expiry Hours",
+            "default": 24
+          }
+        },
+        "type": "object",
+        "required": [
+          "role"
+        ],
+        "title": "InviteRequest"
+      },
+      "InviteResponse": {
+        "properties": {
+          "invite_code": {
+            "type": "string",
+            "title": "Invite Code"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "expires_at": {
+            "type": "integer",
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "invite_code",
+          "role",
+          "expires_at"
+        ],
+        "title": "InviteResponse"
+      },
+      "RevokeRequest": {
+        "properties": {
+          "invite_code": {
+            "type": "string",
+            "title": "Invite Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "invite_code"
+        ],
+        "title": "RevokeRequest"
+      },
+      "SharedFamilyView": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "current_phase": {
+            "type": "string",
+            "title": "Current Phase"
+          },
+          "expected_window_coarse": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Window Coarse"
+          },
+          "support_tip": {
+            "type": "string",
+            "title": "Support Tip"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "current_phase",
+          "support_tip"
+        ],
+        "title": "SharedFamilyView"
       },
       "ValidationError": {
         "properties": {

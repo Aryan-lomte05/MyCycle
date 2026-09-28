@@ -1,0 +1,47 @@
+{
+  "app_name": "MyCycle",
+  "privacy_badge": "Simulated demo data",
+  "privacy_promise": "Your logs stay on this phone. We never send raw tracking logs over the network.",
+  "consult_doctor": "Consider consulting a doctor for personalized medical guidance.",
+  "screening_flag_title": "Screening Pattern Alert",
+  "flags": {
+    "flag_cycle_length_anomaly": {
+      "title": "Cycle Length Variation",
+      "explanation": "Your recent cycle length differs noticeably from your personal historical baseline range.",
+      "contributing_signals": ["Cycle length increased by > 5 days compared to baseline", "Variable flow duration recorded"],
+      "recommendation": "If this pattern persists over 2-3 cycles, consider consulting a doctor."
+    },
+    "flag_pain_spike": {
+      "title": "Pain Score Elevation",
+      "explanation": "Pain severity scores logged over consecutive days are higher than your usual baseline average.",
+      "contributing_signals": ["Pain score level 7-10 logged for 2+ consecutive days", "Severe cramping reported"],
+      "recommendation": "Track accompanying symptoms closely and consider consulting a doctor if pain is unmanageable."
+    },
+    "flag_flow_change": {
+      "title": "Flow Volume Pattern Shift",
+      "explanation": "Flow intensity logs show a sudden change relative to your historical cycle pattern.",
+      "contributing_signals": ["Heavy flow logged on non-peak days", "Abrupt transition from light to heavy flow"],
+      "recommendation": "Ensure adequate hydration and iron intake. Consider consulting a doctor if heavy flow persists."
+    },
+    "flag_irregular_pattern": {
+      "title": "Irregular Baseline Rhythm",
+      "explanation": "Cycle intervals display high variability compared to your expected variance band.",
+      "contributing_signals": ["Standard deviation of cycle length exceeds 6 days", "Interval spacing varies month to month"],
+      "recommendation": "Keep logging to strengthen your baseline statistics. Consider consulting a doctor if cycles stay unpredictable."
+    }
+  },
+  "myths": [
+    {
+      "id": "myth_1",
+      "title": "Myth: Cold food causes severe menstrual cramps",
+      "audio_url": "/audio/myth1_en.mp3",
+      "transcript": "Fact: Cramps are caused by muscle contractions in the uterus driven by prostaglandins, not by drinking cold water or eating cold food. Warm comfort foods can help relax muscles, but temperature alone does not cause cramping."
+    },
+    {
+      "id": "myth_2",
+      "title": "Myth: Irregular cycles always mean fertility problems",
+      "audio_url": "/audio/myth2_en.mp3",
+      "transcript": "Fact: Minor cycle variations are common due to stress, sleep changes, diet, or illness. Screening patterns help track trends over time. Consider consulting a doctor if irregularity persists."
+    }
+  ]
+}

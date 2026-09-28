@@ -1,0 +1,26 @@
+{
+  "follicular": {
+    "partner": "Energy levels are rising! Great time to support outdoor activities or try new recipes together.",
+    "parent": "Your family member is in the follicular phase. Encouraging balanced nutrition supports steady energy.",
+    "sibling": "High energy phase! Good time for fun family activities.",
+    "teacher": "Student is likely experiencing peak cognitive energy and focus during this phase."
+  },
+  "ovulatory": {
+    "partner": "Peak confidence and communication phase. Be encouraging and share active quality time.",
+    "parent": "Ovulatory phase typically brings high social energy and positive mood.",
+    "sibling": "Great time to catch up and talk.",
+    "teacher": "Phase marked by strong social engagement and presentation confidence."
+  },
+  "luteal": {
+    "partner": "Progesterone is rising. Extra warmth, patience, and a relaxing environment are deeply appreciated.",
+    "parent": "Progesterone phase. Offering warm meals and reducing home stress helps comfort them.",
+    "sibling": "Be supportive and offer help with household chores.",
+    "teacher": "Focus and energy may shift slightly. Supportive, steady study environments work best."
+  },
+  "menstrual": {
+    "partner": "Rest and recovery phase. Offering a warm drink, heating pad, or lighter schedule goes a long way.",
+    "parent": "Menstrual phase. Ensure comfortable space, iron-rich foods (spinach, lentils, jaggery), and plenty of fluids.",
+    "sibling": "Be gentle and offer to help with daily tasks.",
+    "teacher": "Rest and physical comfort are key. Hydration and flexible posture during class are beneficial."
+  }
+}

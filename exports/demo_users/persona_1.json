@@ -1,0 +1,13 @@
+{
+  "id": "persona_1",
+  "name": "Persona 1: Regular Healthy Baseline",
+  "description": "Consistent 28-day cycle with mild symptoms.",
+  "cycles": [
+    { "id": "p1_c1", "start_date": "2026-05-01", "cycle_length": 28, "flow_intensity": 2, "pain_score": 2, "symptoms": ["bloating"] },
+    { "id": "p1_c2", "start_date": "2026-05-29", "cycle_length": 28, "flow_intensity": 2, "pain_score": 3, "symptoms": ["cramps"] },
+    { "id": "p1_c3", "start_date": "2026-06-26", "cycle_length": 29, "flow_intensity": 2, "pain_score": 2, "symptoms": ["fatigue"] },
+    { "id": "p1_c4", "start_date": "2026-07-25", "cycle_length": 28, "flow_intensity": 2, "pain_score": 2, "symptoms": ["cramps"] }
+  ],
+  "next_cycle": { "id": "p1_c5", "start_date": "2026-08-22", "cycle_length": 28, "flow_intensity": 2, "pain_score": 3, "symptoms": ["bloating"] },
+  "expected_flag": null
+}

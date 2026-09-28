@@ -1,0 +1,9 @@
+{
+  "phrases": [
+    { "text": "period started yesterday heavy flow bad cramps pain 8", "expected": { "flow_intensity": 3, "pain_score": 8, "symptoms": ["cramps"] } },
+    { "text": "started period today medium flow slight headache pain 3", "expected": { "flow_intensity": 2, "pain_score": 3, "symptoms": ["headache"] } },
+    { "text": "light flow low energy fatigue pain 2", "expected": { "flow_intensity": 1, "pain_score": 2, "symptoms": ["fatigue"] } },
+    { "text": "spotting and severe bloating pain 5", "expected": { "flow_intensity": 0, "pain_score": 5, "symptoms": ["bloating"] } },
+    { "text": "heavy bleeding mood swings backache pain 7", "expected": { "flow_intensity": 3, "pain_score": 7, "symptoms": ["mood_swings", "backache"] } }
+  ]
+}

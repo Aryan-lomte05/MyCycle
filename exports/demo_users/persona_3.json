@@ -1,0 +1,12 @@
+{
+  "id": "persona_3",
+  "name": "Persona 3: High Pain Spike (Endometriosis pattern)",
+  "description": "Baseline mild pain followed by severe 9/10 pain spike.",
+  "cycles": [
+    { "id": "p3_c1", "start_date": "2026-05-01", "cycle_length": 28, "flow_intensity": 2, "pain_score": 3, "symptoms": ["cramps"] },
+    { "id": "p3_c2", "start_date": "2026-05-29", "cycle_length": 28, "flow_intensity": 2, "pain_score": 4, "symptoms": ["cramps"] },
+    { "id": "p3_c3", "start_date": "2026-06-26", "cycle_length": 27, "flow_intensity": 2, "pain_score": 3, "symptoms": ["backache"] }
+  ],
+  "next_cycle": { "id": "p3_c4", "start_date": "2026-07-24", "cycle_length": 28, "flow_intensity": 3, "pain_score": 9, "symptoms": ["cramps", "backache", "nausea"] },
+  "expected_flag": "flag_pain_spike"
+}

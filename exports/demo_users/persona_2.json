@@ -1,0 +1,12 @@
+{
+  "id": "persona_2",
+  "name": "Persona 2: Cycle Anomaly (PCOS pattern)",
+  "description": "Historical 28-day baseline followed by a sudden jump to 42 days.",
+  "cycles": [
+    { "id": "p2_c1", "start_date": "2026-04-01", "cycle_length": 28, "flow_intensity": 2, "pain_score": 3, "symptoms": ["acne"] },
+    { "id": "p2_c2", "start_date": "2026-04-29", "cycle_length": 27, "flow_intensity": 2, "pain_score": 2, "symptoms": ["bloating"] },
+    { "id": "p2_c3", "start_date": "2026-05-26", "cycle_length": 29, "flow_intensity": 2, "pain_score": 3, "symptoms": ["fatigue"] }
+  ],
+  "next_cycle": { "id": "p2_c4", "start_date": "2026-07-07", "cycle_length": 42, "flow_intensity": 3, "pain_score": 4, "symptoms": ["acne", "fatigue"] },
+  "expected_flag": "flag_cycle_length_anomaly"
+}
