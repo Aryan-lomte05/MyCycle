@@ -1,0 +1,303 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MyCycle Backend API",
+    "description": "Privacy-preserving menstrual health screening platform: education content, reminder rules, and aggregate metrics. Your cycle logs stay on your phone. You choose what to share.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Health Check",
+        "description": "Health check endpoint confirming API service status.",
+        "operationId": "health_check_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/content/cards": {
+      "get": {
+        "tags": [
+          "content"
+        ],
+        "summary": "Get Cards",
+        "description": "Returns education cards for the requested language and optional topic.",
+        "operationId": "get_cards_v1_content_cards_get",
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "en",
+                "hi",
+                "mr"
+              ],
+              "type": "string",
+              "description": "Content language",
+              "default": "en",
+              "title": "Lang"
+            },
+            "description": "Content language"
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "pcos",
+                    "anemia",
+                    "thyroid",
+                    "myths",
+                    "general"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Optional topic filter",
+              "title": "Topic"
+            },
+            "description": "Optional topic filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/content/messages": {
+      "get": {
+        "tags": [
+          "content"
+        ],
+        "summary": "Get Messages",
+        "description": "Returns screening message copy and signal descriptions.",
+        "operationId": "get_messages_v1_content_messages_get",
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "en",
+                "hi",
+                "mr"
+              ],
+              "type": "string",
+              "description": "Message dictionary language",
+              "default": "en",
+              "title": "Lang"
+            },
+            "description": "Message dictionary language"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/reminders/rules": {
+      "get": {
+        "tags": [
+          "reminders"
+        ],
+        "summary": "Get Reminder Rules",
+        "description": "Returns rule definitions for on-device reminder scheduling and nudges.",
+        "operationId": "get_reminder_rules_v1_reminders_rules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/metrics/aggregate": {
+      "post": {
+        "tags": [
+          "metrics"
+        ],
+        "summary": "Submit Aggregate Metric",
+        "description": "Records an anonymized aggregate system count.",
+        "operationId": "submit_aggregate_metric_v1_metrics_aggregate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AggregateMetricSubmission"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AggregateMetricSubmission": {
+        "properties": {
+          "metric_name": {
+            "$ref": "#/components/schemas/AllowedMetric"
+          },
+          "value": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Value",
+            "description": "Non-negative numeric count or aggregate score"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "metric_name",
+          "value"
+        ],
+        "title": "AggregateMetricSubmission",
+        "description": "Aggregate metric payload. Extra fields are strictly forbidden."
+      },
+      "AllowedMetric": {
+        "type": "string",
+        "enum": [
+          "app_opened_count",
+          "federated_round_completed",
+          "screen_view_count",
+          "active_users_daily",
+          "content_card_opened",
+          "audio_listened_count"
+        ],
+        "title": "AllowedMetric"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
