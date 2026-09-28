@@ -1,0 +1,88 @@
+{
+  "privacy": {
+    "notice": "Your cycle logs stay on your phone. You choose what to share.",
+    "storage": "Local on-device storage only."
+  },
+  "flag.none.v1": {
+    "title": "Cycle Pattern Within Personal Baseline",
+    "summary": "Your cycle timing, flow, and symptoms remain consistent with your personal baseline.",
+    "meaning": "No unusual shift or drift was observed across your recent cycle logs based on your personal historical range.",
+    "next_steps": "Keep logging your cycles to maintain your personalized baseline. If you feel unwell or notice changes, consider consulting a doctor.",
+    "doctor_consult": "If you experience any new discomfort or have health questions, consider consulting a doctor.",
+    "sources": [
+      "WHO-2023-CYCLE",
+      "ACOG-FAQ049"
+    ],
+    "myth_card_id": 1
+  },
+  "flag.irregularity.v1": {
+    "title": "Cycle Length Variation Observed",
+    "summary": "Your cycle length differed noticeably from your usual personal rhythm.",
+    "meaning": "Your cycle was longer or shorter than what is typical for you. Temporary variations often happen with travel, changes in sleep, or acute stress.",
+    "next_steps": "Continue recording your dates over the next two to three cycles. If irregular intervals persist, consider consulting a doctor.",
+    "doctor_consult": "For recurring irregular cycles, consider consulting a doctor.",
+    "sources": [
+      "NHS-IRREGULAR",
+      "ICMR-PCOS-GUIDELINES"
+    ],
+    "myth_card_id": 2
+  },
+  "flag.pcos_pattern.v1": {
+    "title": "PCOS-Like Screening Pattern",
+    "summary": "Your cycles have been longer than usual for a few months, and you noted some other changes.",
+    "meaning": "This screening flag reflects a combination of lengthened cycles alongside signals like skin breakouts or hair changes. This is a risk pattern sometimes associated with polycystic ovary syndrome, but this screening flag does not mean you have it. A doctor can check with simple tests.",
+    "next_steps": "Keep a steady record of your symptoms and cycle timing. A healthcare professional can evaluate your overall health with routine clinical checks.",
+    "doctor_consult": "To evaluate these hormonal patterns accurately, consider consulting a doctor.",
+    "sources": [
+      "WHO-PCOS-FACTSHEET",
+      "ROTTERDAM-2004"
+    ],
+    "myth_card_id": 3
+  },
+  "flag.anemia_pattern.v1": {
+    "title": "Anemia-Like Screening Pattern",
+    "summary": "Heavier menstrual flow combined with elevated tiredness matches an iron deficiency risk pattern.",
+    "meaning": "Substantial menstrual blood loss alongside dizziness or fatigue suggests your iron reserves may be depleted.",
+    "next_steps": "Prioritize nourishing, iron-rich meals like lentils, leafy greens, and jaggery. Take rest when feeling low on energy.",
+    "doctor_consult": "If heavy bleeding or weakness continues across cycles, consider consulting a doctor for a routine blood count.",
+    "sources": [
+      "WHO-ANEMIA-CUTOFFS",
+      "FIGO-AUB-2018"
+    ],
+    "myth_card_id": 4
+  },
+  "flag.thyroid_pattern.v1": {
+    "title": "Thyroid-Like Screening Pattern",
+    "summary": "Shifts in your cycle length together with fatigue or weight changes match a thyroid risk pattern.",
+    "meaning": "Thyroid hormone balance influences metabolic rate and menstrual timing. A noticeable cycle shift accompanied by sustained fatigue or weight changes is an indicator worth reviewing.",
+    "next_steps": "Note any additional sensations such as temperature sensitivity or mood shifts. Routine lab tests can easily assess thyroid function.",
+    "doctor_consult": "To review these metabolic and menstrual patterns, consider consulting a doctor.",
+    "sources": [
+      "ATA-THYROID-GUIDELINES"
+    ],
+    "myth_card_id": 5
+  },
+  "confidence.low": "Low confidence: based on limited cycle history.",
+  "confidence.medium": "Medium confidence: consistent signal across recent cycles.",
+  "confidence.high": "High confidence: multiple corroborating signals persisted over multiple cycles.",
+  "signals": {
+    "cycle_length_high": "Cycle length noticeably longer than your baseline",
+    "cycle_length_low": "Cycle length noticeably shorter than your baseline",
+    "flow_high": "Menstrual flow noticeably heavier than usual",
+    "pain_high": "Period discomfort higher than your personal typical level",
+    "acne_high": "Skin breakout changes noted",
+    "excess_hair_high": "Excess body hair changes noted",
+    "hair_loss_high": "Hair thinning changes noted",
+    "fatigue_high": "Fatigue levels elevated above usual",
+    "dizziness_high": "Feelings of dizziness reported",
+    "pallor_high": "Paleness noted",
+    "weight_change_high": "Notable weight shift observed",
+    "mood_high": "Mood shifts noted"
+  },
+  "status_notes": {
+    "language": "en",
+    "hindi_translation": "planned, not yet done",
+    "marathi_translation": "planned, not yet done",
+    "audio_recordings": "planned, not yet done"
+  }
+}
