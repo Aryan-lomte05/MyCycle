@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "seed": 42,
+    "git_commit": "86f154094ccf300718d1387a26898f8c6c669153",
+    "simulated": true,
+    "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+    "protocol": "40 rounds, 8 clients, Dirichlet alpha=0.3, clip_norm=1.0, delta=1e-05"
+  },
+  "results": [
+    {
+      "mode": "centralized",
+      "noise_multiplier": 0.0,
+      "clip_norm": 1.0,
+      "epsilon": null,
+      "delta": 1e-05,
+      "auc": 0.8917,
+      "accuracy": 0.8318,
+      "rounds": 40,
+      "non_iid": false
+    },
+    {
+      "mode": "local_only",
+      "noise_multiplier": 0.0,
+      "clip_norm": 1.0,
+      "epsilon": null,
+      "delta": 1e-05,
+      "auc": 0.7402,
+      "accuracy": 0.6355,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedavg",
+      "noise_multiplier": 0.0,
+      "clip_norm": 1.0,
+      "epsilon": null,
+      "delta": 1e-05,
+      "auc": 0.8655,
+      "accuracy": 0.8785,
+      "rounds": 40,
+      "non_iid": false
+    },
+    {
+      "mode": "fedavg",
+      "noise_multiplier": 0.0,
+      "clip_norm": 1.0,
+      "epsilon": null,
+      "delta": 1e-05,
+      "auc": 0.8778,
+      "accuracy": 0.8318,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedprox",
+      "noise_multiplier": 0.0,
+      "clip_norm": 1.0,
+      "epsilon": null,
+      "delta": 1e-05,
+      "auc": 0.8944,
+      "accuracy": 0.6822,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedper",
+      "noise_multiplier": 0.0,
+      "clip_norm": 1.0,
+      "epsilon": null,
+      "delta": 1e-05,
+      "auc": 0.635,
+      "accuracy": 0.5432,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedavg_dp",
+      "noise_multiplier": 0.5,
+      "clip_norm": 1.0,
+      "epsilon": 23.92,
+      "delta": 1e-05,
+      "auc": 0.8464,
+      "accuracy": 0.6729,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedavg_dp",
+      "noise_multiplier": 1.0,
+      "clip_norm": 1.0,
+      "epsilon": 4.27,
+      "delta": 1e-05,
+      "auc": 0.8417,
+      "accuracy": 0.6729,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedavg_dp",
+      "noise_multiplier": 1.5,
+      "clip_norm": 1.0,
+      "epsilon": 2.04,
+      "delta": 1e-05,
+      "auc": 0.8798,
+      "accuracy": 0.6916,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedavg_dp",
+      "noise_multiplier": 2.0,
+      "clip_norm": 1.0,
+      "epsilon": 1.36,
+      "delta": 1e-05,
+      "auc": 0.8603,
+      "accuracy": 0.6729,
+      "rounds": 40,
+      "non_iid": true
+    },
+    {
+      "mode": "fedavg_dp",
+      "noise_multiplier": 3.0,
+      "clip_norm": 1.0,
+      "epsilon": 0.81,
+      "delta": 1e-05,
+      "auc": 0.8591,
+      "accuracy": 0.6729,
+      "rounds": 40,
+      "non_iid": true
+    }
+  ]
+}
