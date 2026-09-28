@@ -30,19 +30,12 @@ One section per dataset used, plus datasets considered and rejected. No dataset 
 
 ## nhanes
 
-- **Status:** cut from the current run and not used in any result. This is the documented P1 cut decision for the current deadline.
-- **Decision date:** 2026-09-28.
-- **Reason:** no verified multi-file download, variable dictionary, join, weighting, and label pipeline was completed in the current run. Keeping it out prevents unsupported anemia or thyroid classifier claims from entering the results.
-- **Current substitute:** symptom-pattern experiments for anemia and thyroid use the explicitly labeled synthetic simulator only, through `results/baseline_detection.json`.
+- **Status:** not yet integrated. Per `docs/OPEN_QUESTIONS.md` (2026-09-26), this was flagged as a P1 cut risk given the Sunday-noon time budget. As of 2026-09-27, symptom-only anemia and thyroid screening is reported through the simulator's `anemia_pattern` and `thyroid_pattern` drift detection only (`results/baseline_detection.json`), not through a trained classifier on real survey data.
 - **If revisited:** would need NHANES demographics, body measures, a reproductive/general health questionnaire, complete blood count (hemoglobin) and thyroid profile (TSH) files, matched by respondent sequence number, with sample weights applied in evaluation and pregnant respondents excluded. No file has been downloaded or verified yet.
 
 ## cycle_calibration
 
-- **Status:** a relevant published source was verified, but no reusable cycle-level download and licence were verified, so it is not registered as a used dataset.
-- **Source publication:** Bull et al., "Real-world menstrual cycle characteristics of more than 600,000 menstrual cycles," https://www.nature.com/articles/s41746-019-0152-7, accessed 2026-09-27.
-- **What it supports:** an external reference for cycle-length and cycle-variability context. It does not by itself provide a committed or downloadable calibration file for this repository.
-- **Licence and terms:** not recorded as a dataset licence because a reusable cycle-level data package was not verified.
-- **Decision:** keep simulator parameters explicitly marked as assumptions; do not claim independent calibration from this publication.
+- **Status:** not yet found. `docs/OPEN_QUESTIONS.md` (2026-09-26) asks whether the Marquette/Fehring cycle-length dataset exists with a usable licence and size. Not resolved as of 2026-09-27. Until it is, `sim/simulator.py` marginals are validated only against the assumptions listed in `sim/ASSUMPTIONS.md`, which is not independent validation.
 
 ## simulator
 
@@ -58,15 +51,3 @@ One section per dataset used, plus datasets considered and rejected. No dataset 
 |---|---|---|
 | PCOS_infertility.csv (same Kaggle source) | Supplementary PCOS features | Smaller, overlapping cohort with a different focus (infertility workup); not merged in this pass to avoid an unverified join on patient identity. Left in `data/raw/` for a future look. |
 | NHANES ultrasound/imaging derived features | Symptom-only screening | Contradicts the symptom-only, no-lab, no-scan design goal; excluded by the same hard constraint that removes labs and ultrasound from kaggle_pcos S1/S2. |
-| UCI thyroid disease | Supplementary thyroid reference | Lab-based clinical diagnosis dataset; too dependent on tests and not aligned with symptom-only screening design. |
-| MIMIC or eICU clinical datasets | Anemia and thyroid risk reference | Not a menstrual-cycle or symptom-first dataset, and patient linkage and de-identification requirements exceed the course scope. |
-| PhysioNet MESA / sleep and menstrual datasets | Cycle-pattern calibration | Missing public, clearly licensed cycle-length tables; more oriented to sleep or physiology than daily symptom logging. |
-| OpenML PCOS and endocrine benchmark sets | PCOS benchmark comparison | Mostly small, weakly documented, or lab-heavy sets without a clean symptom-only mirror. |
-| Kaggle fertility and hormone datasets | Additional PCOS signal | Often lab-only or infertility-focused, with unclear provenance and no deployable symptom-only feature set. |
-| Zenodo menstrual diary archives | Real cycle calibration | Useful for pattern exploration but not a clear licence or reproducible benchmark for this project’s baseline detector. |
-| Mendeley menstrual health datasets | Population calibration | Some are private or single-site samples; often missing clean metadata or a direct symptom-only mapping. |
-| UCI breast cancer and other tabular health benchmarks | Algorithm benchmark | Not relevant to the stated problem and adds no menstrual health signal. |
-| Image-based ovarian ultrasound datasets | PCOS status model | Requires imaging hardware and would violate the symptom-only, no-scan design goal. |
-| Public app datasets from consumer wellness apps | Benchmark and fairness comparison | Not available under a transparent licence or open participant-consent record for research use. |
-
-The project uses `kaggle_pcos` for the symptom-only classifier benchmark and the simulator for pattern detection experiments. The rest are intentionally excluded because they do not match the no-lab, no-scan, privacy-preserving design target or because the provenance and licence are not clear enough to cite defensibly.
