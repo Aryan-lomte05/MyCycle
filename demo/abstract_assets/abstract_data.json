@@ -1,0 +1,1016 @@
+{
+ "label": "Simulated / preliminary, public and synthetic data, not real deployment data",
+ "commit": "a9499e8932ae1286a2714f280e522d3e498d0e14-dirty",
+ "k": {
+  "s1": 0.8908,
+  "s1_lo": 0.8618,
+  "s1_hi": 0.9182,
+  "s3": 0.9588,
+  "hyb": [
+   0.9917,
+   0.9167,
+   0.9917
+  ],
+  "hyb_fa": 4.2743,
+  "fix_fa": 3.3574,
+  "avg": 0.8778,
+  "cen": 0.8917,
+  "loc": 0.7402,
+  "an": 0.6197,
+  "th": 0.7684,
+  "n_pcos": 541,
+  "n_nfhs": 126625,
+  "n_val_w": 159,
+  "n_val_c": 1665,
+  "val_real": 29.2991,
+  "val_sim": 29.0523,
+  "sim_users": 3000,
+  "sim_cycles": 69317,
+  "dp1": {
+   "mode": "fedavg_dp",
+   "noise_multiplier": 1.0,
+   "clip_norm": 1.0,
+   "epsilon": 4.27,
+   "delta": 1e-05,
+   "auc": 0.8417,
+   "accuracy": 0.6729,
+   "rounds": 40,
+   "non_iid": true
+  },
+  "gru": [
+   0.85,
+   0.475,
+   0.2667
+  ]
+ },
+ "imgs": {
+  "personas": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\demo\\abstract_assets\\personas.png",
+   "w": 2200,
+   "h": 1400
+  },
+  "architecture": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\demo\\abstract_assets\\architecture.png",
+   "w": 1600,
+   "h": 900
+  },
+  "federated": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\demo\\abstract_assets\\federated.png",
+   "w": 1600,
+   "h": 900
+  },
+  "privacy": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\demo\\abstract_assets\\privacy.png",
+   "w": 1600,
+   "h": 900
+  },
+  "clf": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\results\\figures\\classifier_comparison.png",
+   "w": 4469,
+   "h": 1583
+  },
+  "calib": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\results\\figures\\pcos_calibration.png",
+   "w": 1850,
+   "h": 1895
+  },
+  "pu": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\results\\figures\\privacy_utility.png",
+   "w": 2100,
+   "h": 1583
+  },
+  "fc": {
+   "path": "E:\\Personal or College Projects\\MyCycle\\results\\figures\\fed_curves.png",
+   "w": 2370,
+   "h": 1578
+  }
+ },
+ "det_rows": [
+  [
+   "Fixed range 21 to 35 days (what most apps do)",
+   "100%",
+   "99%",
+   "85%",
+   "3.36",
+   "33%"
+  ],
+  [
+   "z-score only",
+   "94%",
+   "36%",
+   "65%",
+   "2.91",
+   "35%"
+  ],
+  [
+   "EWMA control chart only",
+   "100%",
+   "88%",
+   "100%",
+   "2.92",
+   "20%"
+  ],
+  [
+   "CUSUM only",
+   "100%",
+   "94%",
+   "100%",
+   "4.39",
+   "13%"
+  ],
+  [
+   "Isolation Forest",
+   "95%",
+   "79%",
+   "89%",
+   "1.79",
+   "45%"
+  ],
+  [
+   "Our Tier 1 hybrid",
+   "99%",
+   "92%",
+   "99%",
+   "4.27",
+   "28%"
+  ],
+  [
+   "Exponential smoothing",
+   "90%",
+   "63%",
+   "30%",
+   "not measured",
+   "not measured"
+  ],
+  [
+   "GRU neural network",
+   "85%",
+   "48%",
+   "27%",
+   "not measured",
+   "not measured"
+  ],
+  [
+   "LSTM neural network",
+   "84%",
+   "46%",
+   "29%",
+   "not measured",
+   "not measured"
+  ],
+  [
+   "1D CNN neural network",
+   "85%",
+   "47%",
+   "32%",
+   "not measured",
+   "not measured"
+  ]
+ ],
+ "pcos_rows": [
+  [
+   "Symptoms only",
+   "knn",
+   "0.891 (0.862 to 0.918)",
+   "71%",
+   "63%",
+   "0.120"
+  ],
+  [
+   "Symptoms + vitals",
+   "random forest",
+   "0.894 (0.864 to 0.922)",
+   "69%",
+   "71%",
+   "0.120"
+  ],
+  [
+   "With labs + ultrasound (reference only)",
+   "lightgbm",
+   "0.959 (0.942 to 0.973)",
+   "88%",
+   "85%",
+   "0.074"
+  ]
+ ],
+ "model_rows": [
+  [
+   "knn",
+   "0.891",
+   "0.862 to 0.918",
+   "71%"
+  ],
+  [
+   "random forest",
+   "0.889",
+   "0.860 to 0.916",
+   "67%"
+  ],
+  [
+   "svm rbf",
+   "0.887",
+   "0.856 to 0.917",
+   "73%"
+  ],
+  [
+   "xgboost",
+   "0.884",
+   "0.852 to 0.914",
+   "71%"
+  ],
+  [
+   "logistic regression",
+   "0.882",
+   "0.849 to 0.912",
+   "73%"
+  ],
+  [
+   "lightgbm",
+   "0.878",
+   "0.845 to 0.908",
+   "71%"
+  ],
+  [
+   "naive bayes",
+   "0.876",
+   "0.841 to 0.907",
+   "73%"
+  ],
+  [
+   "mlp",
+   "0.865",
+   "0.826 to 0.899",
+   "73%"
+  ]
+ ],
+ "nfhs_rows": [
+  [
+   "Anemia (real haemoglobin, WHO cut-off)",
+   "symptom only",
+   "logistic regression",
+   "0.615 (0.601 to 0.628)"
+  ],
+  [
+   "Anemia (real haemoglobin, WHO cut-off)",
+   "symptom plus vitals",
+   "logistic regression",
+   "0.620 (0.605 to 0.633)"
+  ],
+  [
+   "Thyroid (self-reported diagnosis)",
+   "symptom only",
+   "random forest",
+   "0.755 (0.709 to 0.800)"
+  ],
+  [
+   "Thyroid (self-reported diagnosis)",
+   "symptom plus vitals",
+   "random forest",
+   "0.768 (0.730 to 0.807)"
+  ]
+ ],
+ "fed_rows": [
+  [
+   "Without FL: all data pooled",
+   "similar",
+   "none",
+   "no guarantee",
+   "0.892",
+   "83%"
+  ],
+  [
+   "Without FL: each phone alone",
+   "different",
+   "none",
+   "no guarantee",
+   "0.740",
+   "64%"
+  ],
+  [
+   "With FL: FedAvg (similar data per phone)",
+   "similar",
+   "none",
+   "no guarantee",
+   "0.866",
+   "88%"
+  ],
+  [
+   "With FL: FedAvg",
+   "different",
+   "none",
+   "no guarantee",
+   "0.878",
+   "83%"
+  ],
+  [
+   "With FL: FedProx",
+   "different",
+   "none",
+   "no guarantee",
+   "0.894",
+   "68%"
+  ],
+  [
+   "With FL: FedPer (personal head)",
+   "different",
+   "none",
+   "no guarantee",
+   "0.635",
+   "54%"
+  ],
+  [
+   "With FL + DP: FedAvg",
+   "different",
+   "0.5",
+   "23.92",
+   "0.846",
+   "67%"
+  ],
+  [
+   "With FL + DP: FedAvg",
+   "different",
+   "1.0",
+   "4.27",
+   "0.842",
+   "67%"
+  ],
+  [
+   "With FL + DP: FedAvg",
+   "different",
+   "1.5",
+   "2.04",
+   "0.880",
+   "69%"
+  ],
+  [
+   "With FL + DP: FedAvg",
+   "different",
+   "2.0",
+   "1.36",
+   "0.860",
+   "67%"
+  ],
+  [
+   "With FL + DP: FedAvg",
+   "different",
+   "3.0",
+   "0.81",
+   "0.859",
+   "67%"
+  ]
+ ],
+ "pers_rows": [
+  [
+   "PCOS-like caught",
+   "67%",
+   "83%"
+  ],
+  [
+   "Anemia-like caught",
+   "50%",
+   "92%"
+  ],
+  [
+   "Thyroid-like caught",
+   "11%",
+   "67%"
+  ],
+  [
+   "False alarms per 100 normal cycles",
+   "0.85",
+   "18.64"
+  ]
+ ],
+ "val_rows": [
+  [
+   "Average cycle length (days)",
+   "29.30",
+   "29.05"
+  ],
+  [
+   "Variation across all cycles (days)",
+   "3.89",
+   "3.22"
+  ],
+  [
+   "Typical variation within one woman (days)",
+   "2.17",
+   "1.85"
+  ],
+  [
+   "Share of cycles outside 24 to 38 days",
+   "4%",
+   "5%"
+  ]
+ ],
+ "walk": [
+  [
+   "1",
+   "27",
+   "medium",
+   "2/10",
+   "none",
+   "no flag",
+   "-"
+  ],
+  [
+   "2",
+   "24",
+   "light",
+   "4/10",
+   "weight change (mild)",
+   "no flag",
+   "-"
+  ],
+  [
+   "3",
+   "26",
+   "medium",
+   "1/10",
+   "weight change (moderate)",
+   "no flag",
+   "-"
+  ],
+  [
+   "4",
+   "25",
+   "medium",
+   "3/10",
+   "weight change (mild)",
+   "no flag",
+   "-"
+  ],
+  [
+   "5",
+   "30",
+   "medium",
+   "1/10",
+   "acne (moderate), tiredness (mild), weight change (moderate), pale skin (moderate)",
+   "no flag",
+   "-"
+  ],
+  [
+   "6",
+   "40",
+   "medium",
+   "3/10",
+   "hair loss (severe), tiredness (moderate), weight change (mild)",
+   "pcos pattern (medium)",
+   "cycle longer than her normal, more acne, more hair loss"
+  ],
+  [
+   "7",
+   "40",
+   "light",
+   "3/10",
+   "excess hair (moderate), hair loss (mild)",
+   "pcos pattern (high)",
+   "cycle longer than her normal, more acne, more hair growth, more hair loss"
+  ],
+  [
+   "8",
+   "36",
+   "medium",
+   "3/10",
+   "acne (mild), mood change (mild), weight change (mild), pale skin (mild)",
+   "pcos pattern (high)",
+   "cycle longer than her normal, more hair growth, more hair loss"
+  ],
+  [
+   "9",
+   "36",
+   "medium",
+   "3/10",
+   "acne (severe), hair loss (moderate), dizziness (mild), pale skin (moderate)",
+   "pcos pattern (high)",
+   "cycle longer than her normal, more acne, more hair growth"
+  ],
+  [
+   "10",
+   "35",
+   "medium",
+   "4/10",
+   "acne (severe), excess hair (severe), hair loss (moderate), dizziness (mild)",
+   "pcos pattern (high)",
+   "cycle longer than her normal, more acne, more hair growth"
+  ],
+  [
+   "11",
+   "40",
+   "medium",
+   "2/10",
+   "acne (moderate), excess hair (severe), hair loss (moderate), dizziness (moderate)",
+   "pcos pattern (high)",
+   "cycle longer than her normal, more acne, more hair growth"
+  ],
+  [
+   "12",
+   "38",
+   "medium",
+   "4/10",
+   "acne (moderate), excess hair (moderate), hair loss (moderate), dizziness (mild)",
+   "pcos pattern (high)",
+   "cycle longer than her normal, more acne, more hair growth"
+  ]
+ ],
+ "first_flag_cycle": 6,
+ "example_in": "{\n  \"cycle_index\": 6,\n  \"start_date\": \"2024-07-22\",\n  \"cycle_length_days\": 40,\n  \"flow\": 2,\n  \"pain\": 3,\n  \"symptoms\": {\n    \"acne\": 0,\n    \"excess_hair\": 0,\n    \"hair_loss\": 3,\n    \"fatigue\": 2,\n    \"mood\": 0,\n    \"weight_change\": 1,\n    \"dizziness\": 0,\n    \"pallor\": 0\n  }\n}",
+ "example_out": "{\n  \"cycle_index\": 6,\n  \"flag\": \"pcos_pattern\",\n  \"score\": 1.5104,\n  \"confidence\": \"medium\",\n  \"contributing_signals\": [\n    \"cycle_length_high\",\n    \"acne_high\",\n    \"hair_loss_high\"\n  ],\n  \"message_key\": \"flag.pcos_pattern.v1\",\n  \"detector\": \"zscore\",\n  \"simulated\": true\n}",
+ "example_msg": {
+  "title": "PCOS-Like Screening Pattern Noticed",
+  "summary": "Longer cycles paired with symptom changes match a pattern sometimes seen in PCOS.",
+  "meaning": "This screening flag reflects cycle lengthening alongside acne or hair pattern changes. This is a risk screening indicator, not a clinical determination.",
+  "next_steps": "Keep a steady record of your symptoms and cycle timing. Share your self-tracking summary with a healthcare professional.",
+  "doctor_consult": "To evaluate these hormonal patterns accurately, consider consulting a doctor.",
+  "myth_card_id": 3
+ },
+ "summaries": [
+  [
+   "Person A: regular cycles",
+   "none",
+   "never",
+   "yes"
+  ],
+  [
+   "Person B: PCOS-like change",
+   "cycle 5",
+   "cycle 6: pcos pattern",
+   "yes"
+  ],
+  [
+   "Person C: anemia-like change",
+   "cycle 7",
+   "cycle 9: anemia pattern",
+   "yes"
+  ],
+  [
+   "Person D: thyroid-like change",
+   "cycle 5",
+   "cycle 5: thyroid pattern",
+   "yes"
+  ]
+ ],
+ "backend": [
+  [
+   "GET /v1/health",
+   "Is the server alive",
+   "200",
+   "Backend runs"
+  ],
+  [
+   "GET /v1/content/messages",
+   "Flag wording for the app",
+   "200",
+   "The app never invents flag text"
+  ],
+  [
+   "GET /v1/content/cards",
+   "Education cards",
+   "200",
+   "Content is served, not hard-coded"
+  ],
+  [
+   "GET /v1/reminders/rules",
+   "Reminder rules",
+   "200",
+   "Rules are evaluated on the phone, server only sends definitions"
+  ],
+  [
+   "POST /v1/metrics/aggregate",
+   "Send one anonymous count",
+   "201",
+   "Only allowed counts are accepted"
+  ],
+  [
+   "POST /v1/metrics/aggregate",
+   "Try to smuggle a cycle length",
+   "422",
+   "Log data is refused (must be 422)"
+  ],
+  [
+   "POST /v1/metrics/aggregate",
+   "Try an unknown metric",
+   "422",
+   "Anything off the allow-list is refused (must be 422)"
+  ]
+ ],
+ "rej_detail": "{\n  \"detail\": [\n    {\n      \"type\": \"extra_forbidden\",\n      \"loc\": [\n        \"body\",\n        \"cycle_length_days\"\n      ],\n      \"msg\": \"Extra inputs are not permitted\",\n      \"input\": 29\n    }\n  ]\n}",
+ "comparisons": [
+  {
+   "decision": "Personal baseline vs one fixed range for everyone",
+   "chosen": "Personal baseline",
+   "verdict": "MIXED",
+   "headers": [
+    "Measure",
+    "Fixed range 21 to 35 days",
+    "Our personal baseline (hybrid)"
+   ],
+   "rows": [
+    [
+     "PCOS-like caught",
+     "100%",
+     "99%"
+    ],
+    [
+     "Anemia-like caught",
+     "99%",
+     "92%"
+    ],
+    [
+     "Thyroid-like caught",
+     "85%",
+     "99%"
+    ],
+    [
+     "False alarms per 100 normal cycles",
+     "3.36",
+     "4.27"
+    ],
+    [
+     "Healthy people ever flagged",
+     "33%",
+     "28%"
+    ]
+   ],
+   "plain": "A fixed range judges everyone against the average woman. A woman whose normal cycle is 37 days gets flagged every single month, even though nothing is wrong for her (our tests check exactly this case). The personal baseline learns her own normal. Measured: it catches more thyroid-like changes (99% vs 85%) and flags fewer healthy people, but on this simulator the fixed range raises slightly fewer false alarms per cycle (3.36 vs 4.27).",
+   "caveat": "Most simulated women have normal cycles well inside 21 to 35 days, which flatters the fixed range. The advantage of a personal baseline should be larger for women whose normal sits near the edges; we have not measured that subgroup separately yet."
+  },
+  {
+   "decision": "Which change detector for Tier 1",
+   "chosen": "Hybrid (z-score + CUSUM + rules)",
+   "verdict": "TIE",
+   "headers": [
+    "Detector",
+    "PCOS / anemia / thyroid caught",
+    "False alarms per 100",
+    "Healthy ever flagged"
+   ],
+   "rows": [
+    [
+     "z-score only",
+     "94% / 36% / 65%",
+     "2.91",
+     "35%"
+    ],
+    [
+     "EWMA chart only",
+     "100% / 88% / 100%",
+     "2.92",
+     "20%"
+    ],
+    [
+     "CUSUM only",
+     "100% / 94% / 100%",
+     "4.39",
+     "13%"
+    ],
+    [
+     "Isolation Forest",
+     "95% / 79% / 89%",
+     "1.79",
+     "45%"
+    ],
+    [
+     "Our hybrid",
+     "99% / 92% / 99%",
+     "4.27",
+     "28%"
+    ]
+   ],
+   "plain": "A z-score alone reacts to sudden jumps but misses slow creeps (it caught only 36% of anemia-like changes). CUSUM catches slow creeps but reacts later. The hybrid combines both and catches PCOS-like changes in the same cycle they start. But the EWMA chart alone does about as well with fewer false alarms (2.92 vs 4.27) and flags fewer healthy people (20% vs 28%).",
+   "caveat": "On these numbers the EWMA chart is a credible replacement for the hybrid. We are reporting that, and it is an open decision for the team."
+  },
+  {
+   "decision": "Neural network (GRU) vs simple statistics for spotting change",
+   "chosen": "Simple statistics (Tier 1); GRU kept as Tier 2 under evaluation",
+   "verdict": "LOSES",
+   "headers": [
+    "Method",
+    "PCOS / anemia / thyroid caught"
+   ],
+   "rows": [
+    [
+     "Tier 1 statistics",
+     "99% / 92% / 99%"
+    ],
+    [
+     "Exponential smoothing",
+     "90% / 63% / 30%"
+    ],
+    [
+     "GRU",
+     "85% / 48% / 27%"
+    ],
+    [
+     "LSTM",
+     "84% / 46% / 29%"
+    ],
+    [
+     "1D CNN",
+     "85% / 47% / 32%"
+    ]
+   ],
+   "plain": "Neural networks need lots of examples per person. Each simulated person has only 16 to 30 cycles, so simple statistics that track one person's average beat all three neural networks. GRU, LSTM and CNN were almost identical to each other.",
+   "caveat": "With much longer histories, or real data with richer patterns, a neural network could catch up. The GRU is kept, exported and tested, but it does not raise flags."
+  },
+  {
+   "decision": "Which screening model (symptoms to risk)",
+   "chosen": "Random forest",
+   "verdict": "TIE",
+   "headers": [
+    "Comparison",
+    "Best",
+    "Runner-up",
+    "Is the gap real? (p-value)"
+   ],
+   "rows": [
+    [
+     "PCOS, symptoms only",
+     "knn 0.891",
+     "random_forest 0.889",
+     "No (p = 0.8205)"
+    ],
+    [
+     "PCOS, symptoms + vitals",
+     "random_forest 0.894",
+     "logistic_regression 0.878",
+     "Yes (p = 0.0465)"
+    ],
+    [
+     "Thyroid, NFHS-5",
+     "random_forest 0.768",
+     "lightgbm 0.736",
+     "Yes (p = 0.0235)"
+    ],
+    [
+     "Deep network (MLP), PCOS symptoms only",
+     "mlp 0.865",
+     "last of 8",
+     "Deep model was the weakest"
+    ]
+   ],
+   "plain": "Eight models scored almost the same on symptoms alone, so the data sets the ceiling, not the model. Random forest is near the top everywhere and is the significant winner in two comparisons. It also shows which symptoms mattered and needs no special hardware. The deep neural network was the weakest, which is typical for small tables of data.",
+   "caveat": "On symptoms alone k-NN was fractionally higher and the difference is not significant; any of the top four would be a defensible choice."
+  },
+  {
+   "decision": "Symptoms only vs using lab tests",
+   "chosen": "Symptoms only",
+   "verdict": "TRADE-OFF",
+   "headers": [
+    "Inputs",
+    "Best AUC"
+   ],
+   "rows": [
+    [
+     "Symptoms only",
+     "0.891"
+    ],
+    [
+     "Symptoms + vitals",
+     "0.894"
+    ],
+    [
+     "With labs + ultrasound (reference)",
+     "0.959"
+    ]
+   ],
+   "plain": "Lab tests make the model better (AUC 0.96 vs 0.89), but anyone who already has those tests has seen a doctor. The point of MyCycle is to nudge people before that step, at home, for free. We accept the lower accuracy and state it.",
+   "caveat": "Symptom-only screening will miss some cases; that is why every flag says consider consulting a doctor, and a quiet result is not an all-clear."
+  },
+  {
+   "decision": "Where the learning happens",
+   "chosen": "Federated learning",
+   "verdict": "WINS",
+   "headers": [
+    "Setting",
+    "Raw data leaves phone?",
+    "AUC"
+   ],
+   "rows": [
+    [
+     "All data pooled on a server",
+     "Yes",
+     "0.892"
+    ],
+    [
+     "Each phone alone",
+     "No",
+     "0.740"
+    ],
+    [
+     "Federated learning (FedAvg)",
+     "No",
+     "0.878"
+    ]
+   ],
+   "plain": "Pooling everyone's data gives the best accuracy but puts intimate data on a server. Keeping it on each phone alone is private but weak (AUC 0.74). Federated learning keeps data on the phone and gets 0.88, close to pooling.",
+   "caveat": "Measured with 8 simulated phones on the PCOS dataset, not real phones; real networks add dropouts and delays."
+  },
+  {
+   "decision": "Which federated method",
+   "chosen": "FedAvg",
+   "verdict": "TIE",
+   "headers": [
+    "Method",
+    "AUC",
+    "Accuracy"
+   ],
+   "rows": [
+    [
+     "FedAvg",
+     "0.878",
+     "83%"
+    ],
+    [
+     "FedProx",
+     "0.894",
+     "68%"
+    ],
+    [
+     "FedPer (personal head)",
+     "0.635",
+     "54%"
+    ]
+   ],
+   "plain": "FedProx ranked slightly better (AUC 0.89 vs 0.88) but got far fewer answers right at the default cut-off (68% vs 83%). FedPer was weakest. FedAvg is the simplest, most standard method and the best balance here.",
+   "caveat": "One run per setting on a small dataset; FedProx's AUC edge could be real. SCAFFOLD and FedAdam were not run."
+  },
+  {
+   "decision": "Adding differential privacy",
+   "chosen": "FedAvg with differential privacy",
+   "verdict": "TRADE-OFF",
+   "headers": [
+    "Setting",
+    "Epsilon",
+    "AUC",
+    "Accuracy"
+   ],
+   "rows": [
+    [
+     "No privacy noise",
+     "none",
+     "0.878",
+     "83%"
+    ],
+    [
+     "Noise 0.5",
+     "23.92",
+     "0.846",
+     "67%"
+    ],
+    [
+     "Noise 1.0",
+     "4.27",
+     "0.842",
+     "67%"
+    ],
+    [
+     "Noise 1.5",
+     "2.04",
+     "0.880",
+     "69%"
+    ],
+    [
+     "Noise 2.0",
+     "1.36",
+     "0.860",
+     "67%"
+    ],
+    [
+     "Noise 3.0",
+     "0.81",
+     "0.859",
+     "67%"
+    ]
+   ],
+   "plain": "Without noise, a clever server could learn things about one person from her update. Differential privacy adds noise so that any one person barely changes the result, with a measured budget, epsilon. It costs accuracy, and we show exactly how much.",
+   "caveat": "Secure aggregation and homomorphic encryption are other ways to hide updates; we did not test them. DP gives a bounded leak, never zero."
+  },
+  {
+   "decision": "Personalizing the neural network per user",
+   "chosen": "Not used (statistical baseline is already personal)",
+   "verdict": "LOSES",
+   "headers": [
+    "Measure",
+    "Before fine-tuning",
+    "After fine-tuning"
+   ],
+   "rows": [
+    [
+     "PCOS-like caught",
+     "67%",
+     "83%"
+    ],
+    [
+     "Thyroid-like caught",
+     "11%",
+     "67%"
+    ],
+    [
+     "False alarms per 100 normal cycles",
+     "0.85",
+     "18.64"
+    ]
+   ],
+   "plain": "Tuning the model on a user's first 4 cycles made it catch more changes, but it also started crying wolf far more often. Too many false alarms make people ignore flags, so we do not use it.",
+   "caveat": "With more cycles for fine-tuning, or a false-alarm penalty during tuning, this could improve."
+  },
+  {
+   "decision": "Filling in missing answers",
+   "chosen": "Median fill",
+   "verdict": "TIE",
+   "headers": [
+    "Model",
+    "Median fill AUC",
+    "Nearest-neighbour fill AUC"
+   ],
+   "rows": [
+    [
+     "logistic regression, symptom only",
+     "0.883",
+     "0.882"
+    ],
+    [
+     "random forest, symptom only",
+     "0.889",
+     "0.887"
+    ],
+    [
+     "logistic regression, symptom plus vitals",
+     "0.877",
+     "0.877"
+    ],
+    [
+     "random forest, symptom plus vitals",
+     "0.893",
+     "0.893"
+    ]
+   ],
+   "plain": "Only 2 of 541 records had a missing answer, so both methods give the same result. We use the simpler one.",
+   "caveat": "On data with many gaps (real app logs), this choice would matter more and should be re-tested."
+  },
+  {
+   "decision": "Indian survey (NFHS-5) vs US survey (NHANES) for anemia and thyroid",
+   "chosen": "NFHS-5",
+   "verdict": "NOT MEASURED",
+   "headers": [
+    "Reason",
+    "NFHS-5"
+   ],
+   "rows": [
+    [
+     "Population",
+     "Indian women aged 15 to 49, our users"
+    ],
+    [
+     "Size",
+     "126,625 non-pregnant women"
+    ],
+    [
+     "Anemia label",
+     "Real measured haemoglobin"
+    ],
+    [
+     "Licence",
+     "Public domain (CC0)"
+    ]
+   ],
+   "plain": "Our users are Indian women. A US survey would describe a different population, diet and anemia rate. NFHS-5 is India's own survey with real blood measurements.",
+   "caveat": "We did not run NHANES, so this is a reasoned choice, not a measured comparison."
+  },
+  {
+   "decision": "PyTorch + ONNX for the model file",
+   "chosen": "PyTorch, exported to ONNX",
+   "verdict": "NOT MEASURED",
+   "headers": [
+    "Check",
+    "Result"
+   ],
+   "rows": [
+    [
+     "Same answers after export",
+     "Largest difference under 0.0001 (tested)"
+    ],
+    [
+     "Runs in a browser",
+     "Yes, via ONNX Runtime Web"
+    ],
+    [
+     "Keras / TFLite",
+     "Not compared"
+    ]
+   ],
+   "plain": "We needed one model file that runs inside a web page on the phone. PyTorch exports to ONNX in one step and we verified the exported model gives the same answers.",
+   "caveat": "Phone speed and memory have not been measured yet; that benchmark is in progress."
+  }
+ ],
+ "fed_protocol": "40 rounds, 8 clients, Dirichlet alpha=0.3, clip_norm=1.0, delta=1e-05",
+ "claims": {
+  "total": 19,
+  "supported": 11,
+  "needs work": 8,
+  "remove": 0
+ },
+ "n_cards": 6,
+ "n_rules": 5
+}
