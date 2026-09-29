@@ -41,6 +41,9 @@ sys.path.insert(0, str(ROOT))
 
 from sim.common import LABEL, git_commit  # noqa: E402
 
+sys.path.insert(0, str(ROOT / "demo"))
+import form_spec as FS  # noqa: E402
+
 OUT_DIR = ROOT / "demo"
 RES = ROOT / "results"
 
@@ -296,6 +299,46 @@ def build_slides(R: dict) -> list[dict]:
           ], small=True),
           "The engine is built and measured: the detector, the models, the private learning, and the backend. The phone app screens are still being built. "
           "Everything you see in this demo runs the real code, not mock-ups.", dur=20)
+
+    # ---------------------------------------------------------------- the logging form (demo/form_spec.py is the single source)
+    v1 = [q for s in FS.FORM for q in s["questions"] if q["status"] == "v1"]
+    def short_ans(q):
+        if q["type"] == "sev":
+            return "None / Mild / Moderate / Severe"
+        if q["type"] == "scale":
+            return "0 to 10, every band labeled"
+        if q["type"] == "date":
+            return "date (cycle length computed)"
+        return " / ".join(x.split(":")[0] for _, x in q["options"])
+    slide("The logging form", f"The form: {len(v1)} questions the detector uses today",
+          table(["Question she answers", "Answer", "Feeds"], [[esc(q["q"]), esc(short_ans(q)), esc(q["feeds"])] for q in v1], tiny=True)
+          + '<p class="note">One short form per cycle, not a daily diary. Try it: <code>demo/logging_form.html</code> prints the exact record it stores.</p>',
+          "She fills one short form per period. Each question exists because it feeds one of the signals the detector watches. We ask for dates, not cycle length, because people misremember cycle length.",
+          dur=26)
+    pq = next(q for s in FS.FORM for q in s["questions"] if q["id"] == "pain")
+    fq = next(q for s in FS.FORM for q in s["questions"] if q["id"] == "flow")
+    slide("The logging form", "How pain and flow are measured, so a number means the same to everyone",
+          '<div class="cols"><div><h3>Pain: worst pain this cycle, 0 to 10</h3>'
+          + table(["Score", "What it means"], [[esc(a), esc(b)] for a, b in pq["anchors"]], small=True)
+          + '<p class="caption">Validated menstrual pain scale (0 = No pain, 10 = Extremely severe); a change of about 1 point is meaningful '
+            '(Frontiers in Pain Research 2025). Middle labels are our wording, tied to daily life.</p></div>'
+          + '<div><h3>Flow: heaviest day</h3>' + table(["Level", "What she sees"], [[str(v), esc(x)] for v, x in fq["options"]], small=True)
+          + '<p class="caption">Described by the pad or tampon, not a vague word. Optional: the standard pictorial blood-loss chart '
+            '(Higham 1990, UNVERIFIED) turns pad counts and clots into a score on the phone.</p></div></div>',
+          "Sir's question was fair: what does pain 6 mean? On our form every number has a meaning written next to it. 4 to 6 means she had to slow down or skip some things. Flow is described by what she sees on the pad, not by words like heavy.",
+          dur=30)
+    v2ctx = [q for s in FS.FORM for q in s["questions"] if q["id"] in ("context", "hormonal", "pregnancy", "intermenstrual", "bleed_days", "clots")]
+    ben = drow_benign = next((r for r in R["det"]["rows"] if r["detector"] == "hybrid" and r["drift_type"] == "benign_shift"), {})
+    slide("The logging form", "What we add next, and what we never ask",
+          '<div class="cols"><div><h3>Proposed additions</h3>' + bullets([esc(q["q"]) for q in v2ctx])
+          + f'<p class="note">Why "anything unusual this cycle?": on the simulator, {pct(ben.get("pattern_flag_rate"))} of women with a one-off stress or travel cycle '
+            'got a pattern flag. Knowing the reason lets the app wait one cycle. Expected to help; not yet measured.</p></div>'
+          + '<div><h3>Never asked</h3>' + table(["Item", "Why not"], [[esc(a), esc(b)] for a, b in FS.NOT_ASKED], tiny=True) + '</div></div>',
+          "Next we want to ask whether anything unusual happened, like travel or exams, because a single stressful month is the main source of false alarms. And we deliberately do not ask about sex or discharge: not needed for these screenings, and too sensitive on a shared phone.",
+          dur=30)
+    slide("The logging form", "Questions about the form, answered",
+          "".join(f'<div class="qa"><p class="q">{esc(q)}</p><p class="a">{esc(a)}</p></div>' for q, a in FS.QUESTIONS_SIR[:5]),
+          " ".join(f"{q} {a}" for q, a in FS.QUESTIONS_SIR[:5]), dur=34)
 
     # ---------------------------------------------------------------- B. how it works
     slide("How it works", "How it works: two tiers on the phone, only a protected update leaves", ARCH_SVG +

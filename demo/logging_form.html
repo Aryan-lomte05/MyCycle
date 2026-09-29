@@ -1,0 +1,123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyCycle Logging Form</title><style>
+:root{--bg:#fbfaf6;--ink:#1c1c1c;--muted:#52525b;--accent:#0f766e;--line:#d6d3cb}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Roboto,Arial,sans-serif;font-size:19px}
+main{max-width:980px;margin:0 auto;padding:24px 16px 80px}h1{color:var(--accent);margin:8px 0}h2{margin:28px 0 8px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+.q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}.q>label{font-weight:700;display:block;margin-bottom:8px}
+.opts{display:flex;flex-direction:column;gap:6px}.opt{font-weight:400;display:flex;gap:10px;align-items:flex-start;min-height:32px}
+input[type=radio],input[type=checkbox]{width:22px;height:22px;margin-top:2px}input[type=number],input[type=date]{font-size:18px;padding:6px;border:1px solid var(--line);border-radius:8px;width:170px}
+.scale{display:flex;align-items:center;gap:12px}.scale input{flex:1;height:30px}#painval{font-size:28px;color:var(--accent);width:36px;text-align:center}
+.anchors{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px;color:var(--muted);margin-top:4px}
+.why{font-size:15px;color:var(--muted);margin:10px 0 0}.hint{font-size:15px;color:var(--muted)}
+.st{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}.st.v1{background:#dcfce7;color:#166534}.st.v2{background:#e0e7ff;color:#3730a3}
+button{font-size:20px;padding:12px 22px;border:0;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;min-height:44px}
+pre{background:#1f2937;color:#f9fafb;padding:14px;border-radius:10px;font-size:15px;white-space:pre-wrap}
+.banner{background:#ecfdf5;border-left:5px solid var(--accent);padding:10px 14px;border-radius:6px;font-size:16px}
+</style></head><body><main>
+<h1>MyCycle: log this cycle</h1>
+<p class="banner">Prototype of the logging form (design mock, not the app). Nothing here is sent anywhere: press the button to see the exact record the phone would store. Green = used by the detector today; blue = proposed addition. Simulated / preliminary, public and synthetic data, not real deployment data.</p>
+<form id="f" onsubmit="return build()">
+<section><h2>Period</h2>
+<div class="q" data-id="start_date"><label>When did this period start? <span class="st v1">in use today</span></label>
+<input type="date" name="start_date" value="2024-07-22"><input type="date" name="prev_start" value="2024-06-12" title="previous period start"><span class="hint">previous start (to compute cycle length)</span>
+<p class="why"><b>Why:</b> Cycle length is computed from two start dates. We never ask &quot;how long was your cycle&quot;: people misremember it, dates do not. <b>Feeds:</b> cycle_length_days (derived), cycle_length_high / cycle_length_low signals</p></div>
+<div class="q" data-id="bleed_days"><label>How many days did you bleed? <span class="st v2">proposed</span></label>
+<input type="number" name="bleed_days" min="1" max="15" value="1">
+<p class="why"><b>Why:</b> Very long bleeding is a warning sign of heavy periods (reported as an independent predictor in PBAC_ASIA). <b>Feeds:</b> proposed: bleeding_days_high signal for anemia_pattern</p></div>
+<div class="q" data-id="flow"><label>How heavy was the flow on your heaviest day? <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="flow" value="0" checked> None: no bleeding</label><label class="opt"><input type="radio" name="flow" value="1" > Light: pad or tampon only lightly stained when changed</label><label class="opt"><input type="radio" name="flow" value="2" > Medium: pad or tampon moderately soaked when changed</label><label class="opt"><input type="radio" name="flow" value="3" > Heavy: pad or tampon fully soaked, or leaking through, or needing two at once</label></div>
+<p class="why"><b>Why:</b> Heavier flow than her own normal, together with tiredness, dizziness or pale skin, is the anemia-like pattern. Each level is described by what she sees, not a vague word. <b>Feeds:</b> flow_high signal (anemia_pattern)</p></div>
+<div class="q" data-id="pbac"><label>Optional, for more accuracy: on your heaviest day, how many pads or tampons were lightly / moderately / fully soaked? <span class="st v2">proposed</span></label>
+<div class="pbac">Lightly soaked <input type="number" name="pb_l" min="0" value="0"> Moderately <input type="number" name="pb_m" min="0" value="0"> Fully <input type="number" name="pb_f" min="0" value="0"> <span class="hint">score shown below; UNVERIFIED weights (1, 5, 20 per item, as commonly quoted for the pictorial chart), clots/flooding from the next question</span></div>
+<p class="why"><b>Why:</b> A counting chart turns &quot;heavy&quot; into a score. Scored on the phone only; the score, not the counts, is stored. <b>Feeds:</b> proposed: pbac_score (anemia_pattern)</p></div>
+<div class="q" data-id="clots"><label>Did you pass clots bigger than a one-rupee coin, or have flooding (sudden gush that leaked through)? <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="clots" value="0" checked> No</label><label class="opt"><input type="radio" name="clots" value="1" > Yes, once</label><label class="opt"><input type="radio" name="clots" value="2" > Yes, more than once</label></div>
+<p class="why"><b>Why:</b> Clots and flooding are part of the standard heavy-bleeding chart and reported predictors of heavy bleeding. <b>Feeds:</b> proposed: clots signal (anemia_pattern)</p></div>
+<div class="q" data-id="intermenstrual"><label>Any bleeding between periods or after sex? <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="intermenstrual" value="0" checked> No</label><label class="opt"><input type="radio" name="intermenstrual" value="1" > Yes</label></div>
+<p class="why"><b>Why:</b> Safety question. A yes always shows &quot;consider consulting a doctor&quot;, whatever the detector says. <b>Feeds:</b> proposed: safety prompt (never a pattern flag)</p></div>
+</section>
+<section><h2>Pain</h2>
+<div class="q" data-id="pain"><label>How bad was your worst period pain this cycle? <span class="st v1">in use today</span></label>
+<div class="scale"><input type="range" name="pain" min="0" max="10" value="0" oninput="painLabel(this)"><b id="painval">0</b> <span id="painlab">No pain</span></div>
+<div class="anchors"><span>0: No pain</span><span>1 to 3: Mild: noticeable, I could do my usual day</span><span>4 to 6: Moderate: I had to slow down or skip some things</span><span>7 to 9: Severe: I could not do my usual activities</span><span>10: Extremely severe</span></div>
+<p class="why"><b>Why:</b> The 0 to 10 menstrual pain scale is validated with the end labels &quot;No pain&quot; and &quot;Extremely severe&quot;; a change of about 1 point is meaningful (NRS). The middle labels tie numbers to daily life so 6 means the same to everyone; those middle wordings are our design choice. <b>Feeds:</b> pain_high signal (context for all patterns)</p></div>
+<div class="q" data-id="pain_days"><label>On how many days did pain stop you from school, work or housework? <span class="st v2">proposed</span></label>
+<input type="number" name="pain_days" min="0" max="10" value="0">
+<p class="why"><b>Why:</b> Function is what matters to a doctor: &quot;missed 3 days of college&quot; is clearer than a number. <b>Feeds:</b> proposed: pain_impact (shown in the doctor visit summary)</p></div>
+<div class="q" data-id="painkiller"><label>Did you take a painkiller for period pain? <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="painkiller" value="0" checked> No</label><label class="opt"><input type="radio" name="painkiller" value="1" > Yes</label></div>
+<p class="why"><b>Why:</b> A pain score of 3 after a painkiller is not the same as 3 without one. <b>Feeds:</b> proposed: context for pain_high</p></div>
+</section>
+<section><h2>Symptoms this cycle</h2>
+<p class="hint">Each symptom uses the same four answers: None; Mild: I noticed it, it did not bother me; Moderate: it bothered me; Severe: it affected my day (school, work, home).</p>
+<div class="q" data-id="acne"><label>Pimples or acne <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="acne" value="0" checked> None</label><label class="opt"><input type="radio" name="acne" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="acne" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="acne" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Androgen-type sign. <b>Feeds:</b> acne_high (pcos_pattern)</p></div>
+<div class="q" data-id="excess_hair"><label>New or thicker hair on face, chin, chest or stomach <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="excess_hair" value="0" checked> None</label><label class="opt"><input type="radio" name="excess_hair" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="excess_hair" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="excess_hair" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Androgen-type sign, described by body place so it is not confused with normal hair. <b>Feeds:</b> excess_hair_high (pcos_pattern)</p></div>
+<div class="q" data-id="hair_loss"><label>Hair thinning or falling from the scalp <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="hair_loss" value="0" checked> None</label><label class="opt"><input type="radio" name="hair_loss" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="hair_loss" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="hair_loss" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Seen in both androgen-type and thyroid-type changes. <b>Feeds:</b> hair_loss_high (pcos_pattern)</p></div>
+<div class="q" data-id="fatigue"><label>Tiredness that rest does not fix <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="fatigue" value="0" checked> None</label><label class="opt"><input type="radio" name="fatigue" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="fatigue" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="fatigue" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Shared by anemia-like and thyroid-like patterns; the other answers decide which. <b>Feeds:</b> fatigue_high (anemia_pattern, thyroid_pattern)</p></div>
+<div class="q" data-id="mood"><label>Low mood, irritability or anxiety <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="mood" value="0" checked> None</label><label class="opt"><input type="radio" name="mood" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="mood" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="mood" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Thyroid-type sign. <b>Feeds:</b> mood_high (thyroid_pattern)</p></div>
+<div class="q" data-id="weight_change"><label>Weight change you did not try for <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="weight_change" value="0" checked> None</label><label class="opt"><input type="radio" name="weight_change" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="weight_change" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="weight_change" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Thyroid-type sign. <b>Feeds:</b> weight_change_high (thyroid_pattern)</p></div>
+<div class="q" data-id="weight_dir"><label>If yes: gained or lost? <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="weight_dir" value="0" checked> Gained</label><label class="opt"><input type="radio" name="weight_dir" value="1" > Lost</label></div>
+<p class="why"><b>Why:</b> Gain and loss point in different directions; today&#x27;s contract cannot tell them apart. <b>Feeds:</b> proposed: weight_direction (thyroid_pattern)</p></div>
+<div class="q" data-id="dizziness"><label>Dizziness or feeling faint when standing <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="dizziness" value="0" checked> None</label><label class="opt"><input type="radio" name="dizziness" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="dizziness" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="dizziness" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Anemia-type sign. <b>Feeds:</b> dizziness_high (anemia_pattern)</p></div>
+<div class="q" data-id="pallor"><label>Pale skin, pale nails or pale inner eyelids <span class="st v1">in use today</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="pallor" value="0" checked> None</label><label class="opt"><input type="radio" name="pallor" value="1" > Mild: I noticed it, it did not bother me</label><label class="opt"><input type="radio" name="pallor" value="2" > Moderate: it bothered me</label><label class="opt"><input type="radio" name="pallor" value="3" > Severe: it affected my day (school, work, home)</label></div>
+<p class="why"><b>Why:</b> Anemia-type sign, described by where to look. <b>Feeds:</b> pallor_high (anemia_pattern)</p></div>
+</section>
+<section><h2>Anything that explains a change</h2>
+<div class="q" data-id="context"><label>Was anything unusual this cycle? (tick all that apply) <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="checkbox" name="context" value="Travel"> Travel</label><label class="opt"><input type="checkbox" name="context" value="Illness or fever"> Illness or fever</label><label class="opt"><input type="checkbox" name="context" value="Big stress (exams, family, work)"> Big stress (exams, family, work)</label><label class="opt"><input type="checkbox" name="context" value="Big change in food or exercise"> Big change in food or exercise</label><label class="opt"><input type="checkbox" name="context" value="Started or stopped a medicine"> Started or stopped a medicine</label></div>
+<p class="why"><b>Why:</b> On the simulator, our detector gave 39% of women with a one-off stress or travel cycle a pattern flag. Knowing the reason lets the app hold a flag and wait one more cycle instead of alarming her. Expected to cut false alarms; not yet measured. <b>Feeds:</b> proposed: context_benign, suppresses pattern flags for one cycle</p></div>
+<div class="q" data-id="hormonal"><label>Are you using hormonal contraception (pill, injection, implant, hormonal coil)? <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="hormonal" value="0" checked> No</label><label class="opt"><input type="radio" name="hormonal" value="1" > Yes</label></div>
+<p class="why"><b>Why:</b> Hormonal contraception controls the bleeding pattern, so cycle-based screening does not apply. The app pauses pattern flags and says why. <b>Feeds:</b> proposed: screening_paused</p></div>
+<div class="q" data-id="pregnancy"><label>Could you be pregnant, or are you breastfeeding? <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="pregnancy" value="0" checked> No</label><label class="opt"><input type="radio" name="pregnancy" value="1" > Yes</label><label class="opt"><input type="radio" name="pregnancy" value="2" > Not sure</label></div>
+<p class="why"><b>Why:</b> A missed period may be pregnancy, not a pattern. Screening pauses and the app suggests a test or a doctor. <b>Feeds:</b> proposed: screening_paused</p></div>
+</section>
+<section><h2>Once, at setup (optional, stays on the phone)</h2>
+<div class="q" data-id="known_dx"><label>Has a doctor already told you that you have PCOS, anemia or a thyroid condition? <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="checkbox" name="known_dx" value="PCOS"> PCOS</label><label class="opt"><input type="checkbox" name="known_dx" value="Anemia"> Anemia</label><label class="opt"><input type="checkbox" name="known_dx" value="Thyroid"> Thyroid</label><label class="opt"><input type="checkbox" name="known_dx" value="None / not sure"> None / not sure</label></div>
+<p class="why"><b>Why:</b> The app should not &quot;discover&quot; what she already knows; it switches to tracking and education for that condition. <b>Feeds:</b> proposed: suppress the matching pattern flag</p></div>
+<div class="q" data-id="age_band"><label>Your age group <span class="st v2">proposed</span></label>
+<div class="opts"><label class="opt"><input type="radio" name="age_band" value="0" checked> Under 18</label><label class="opt"><input type="radio" name="age_band" value="1" > 18 to 29</label><label class="opt"><input type="radio" name="age_band" value="2" > 30 to 39</label><label class="opt"><input type="radio" name="age_band" value="3" > 40 or over</label></div>
+<p class="why"><b>Why:</b> Cycles are naturally irregular in the first years after periods start and in the years before menopause. <b>Feeds:</b> proposed: detector sensitivity by age band</p></div>
+<div class="q" data-id="vitals"><label>Height and weight (optional) <span class="st v2">proposed</span></label>
+<input type="number" name="height" placeholder="height cm"> <input type="number" name="weight" placeholder="weight kg">
+<p class="why"><b>Why:</b> Adds the &quot;symptoms + vitals&quot; screening features (PCOS AUC 0.894 vs 0.891 symptoms only on real data: a small gain). <b>Feeds:</b> proposed: bmi for the symptom_plus_vitals screening model</p></div>
+</section>
+<p><button type="submit">Show the record this form stores</button></p></form>
+<h2>Stored record (contract 5.3, v1 fields)</h2><pre id="out">press the button</pre>
+<h2>Proposed v2 extras (still on the phone only)</h2><pre id="out2"></pre>
+</main><script>
+const LABELS=[[0,'No pain'],[1,'Mild: noticeable, I could do my usual day'],[4,'Moderate: I had to slow down or skip some things'],[7,'Severe: I could not do my usual activities'],[10,'Extremely severe']];
+function painLabel(el){const v=+el.value;document.getElementById('painval').textContent=v;let t='';for(const [k,l] of LABELS){if(v>=k)t=l;}document.getElementById('painlab').textContent=t;}
+function val(n){const f=document.getElementById('f');const el=f.querySelector(`[name="${n}"]:checked`)||f.querySelector(`[name="${n}"]`);return el?el.value:null;}
+function multi(n){return [...document.querySelectorAll(`[name="${n}"]:checked`)].map(x=>x.value);}
+function build(){
+  const s=val('start_date'),p=val('prev_start');const len=Math.round((Date.parse(s)-Date.parse(p))/864e5);
+  const sym={};['acne','excess_hair','hair_loss','fatigue','mood','weight_change','dizziness','pallor'].forEach(k=>sym[k]=+val(k));
+  const rec={cycle_index:6,start_date:s,cycle_length_days:len,flow:+val('flow'),pain:+val('pain'),symptoms:sym};
+  document.getElementById('out').textContent=JSON.stringify(rec,null,2);
+  const clots=+val('clots');const pb=(+val('pb_l'))*1+(+val('pb_m'))*5+(+val('pb_f'))*20+(clots>0?(clots===1?1:5):0);
+  const ctx=multi('context');const paused=val('hormonal')==='1'||val('pregnancy')!=='0';
+  document.getElementById('out2').textContent=JSON.stringify({bleeding_days:+val('bleed_days'),pbac_score_unverified_weights:pb,clots:clots,
+    intermenstrual:+val('intermenstrual'),pain_impact_days:+val('pain_days'),painkiller:+val('painkiller'),weight_direction:val('weight_dir')==='0'?'gained':'lost',
+    context:ctx,screening_paused:paused,note:paused?'Screening paused: hormonal contraception, pregnancy or breastfeeding changes what cycle patterns mean.':(ctx.length?'A reason was given for this cycle: the app would hold any pattern flag and check again next cycle.':'')},null,2);
+  return false;}
+</script></body></html>
