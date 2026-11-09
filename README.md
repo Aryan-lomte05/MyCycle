@@ -7,7 +7,7 @@
 [![Languages](https://img.shields.io/badge/languages-English%20·%20हिन्दी%20·%20मराठी-15181D?style=flat-square)](#multilingual-by-default)
 [![Not a diagnosis](https://img.shields.io/badge/output-screening%20flag,%20not%20a%20diagnosis-ef4444?style=flat-square)](#this-is-not-a-diagnostic-tool)
 
-Most cycle apps compare a person against a population average: anything outside 21–35 days is "irregular".
+Most cycle apps compare a person against a population average: anything outside 21 to 35 days is "irregular".
 That is a weak signal. A 24-day cycle is perfectly normal for one person and a warning sign for another whose
 cycles have always run at 31 days. The information is in the *change from your own baseline*, not in the
 distance from a population mean.
@@ -54,26 +54,26 @@ Two of the three evaluations use **real public data**; the drift-detection evalu
 because no public dataset contains labelled per-person baseline drift. Each is labelled below. Every AUC carries
 a bootstrap 95% confidence interval, and model comparisons use a paired bootstrap rather than eyeballing.
 
-### Screening from symptoms alone — Kaggle PCOS dataset (real data)
+### Screening from symptoms alone: Kaggle PCOS dataset (real data)
 
 | Feature set | Best model | AUC | 95% CI |
 |---|---|---:|---|
-| Symptoms only *(what a phone can actually collect)* | k-NN | **0.891** | 0.862 – 0.918 |
-| Symptoms only | random forest | 0.889 | 0.860 – 0.916 |
-| Symptoms only | SVM (RBF) | 0.887 | 0.856 – 0.917 |
-| Symptoms only | logistic regression | 0.882 | 0.849 – 0.912 |
-| **With labs and ultrasound** *(reference only — not deployable on a phone)* | — | **~0.96** | — |
+| Symptoms only *(what a phone can actually collect)* | k-NN | **0.891** | 0.862 to 0.918 |
+| Symptoms only | random forest | 0.889 | 0.860 to 0.916 |
+| Symptoms only | SVM (RBF) | 0.887 | 0.856 to 0.917 |
+| Symptoms only | logistic regression | 0.882 | 0.849 to 0.912 |
+| **With labs and ultrasound** *(reference only, not deployable on a phone)* | n/a | **~0.96** | n/a |
 
 The top two symptom-only models are **not** significantly different (paired bootstrap, p = 0.82), so the
 simplest adequate model wins rather than the most impressive-sounding one. Symptom-only screening retains most,
-but not all, of the accuracy available with clinical labs — and the gap is stated rather than hidden.
+but not all, of the accuracy available with clinical labs, and the gap is stated rather than hidden.
 
-### Screening on real national survey data — NFHS-5
+### Screening on real national survey data: NFHS-5
 
 | Target | Feature set | Best AUC | Verdict |
 |---|---|---:|---|
 | Self-reported thyroid condition | symptoms + vitals | **0.768** | Significantly better than the next model (p = 0.024) |
-| Anaemia (WHO haemoglobin threshold) | symptoms + demographics | **0.62** | **Near chance — a negative result, reported as one** |
+| Anaemia (WHO haemoglobin threshold) | symptoms + demographics | **0.62** | **Near chance, a negative result reported as one** |
 
 The anaemia result is the most useful number in this project. Symptom self-report does not predict
 haemoglobin-defined anaemia at a usable accuracy, so MyCycle does not claim to screen for anaemia. A project
@@ -87,8 +87,8 @@ Detectors are tuned on a validation split only, then measured once on held-out s
 |---|---:|---:|---:|---:|
 | Tier 1 hybrid (z-score + CUSUM + rules) | **99%** | **92%** | **99%** | 4.3 |
 | Fixed population threshold *(what most apps do)* | 100% | 99% | 85% | 3.4 |
-| CUSUM alone | — | — | — | lowest |
-| Tier 2 GRU (hidden size 32) | 85% | 48% | 27% | — |
+| CUSUM alone | n/a | n/a | n/a | lowest |
+| Tier 2 GRU (hidden size 32) | 85% | 48% | 27% | n/a |
 
 **The honest reading of this table:** the naive population threshold is a *strong* baseline. It matches or beats
 the hybrid detector on two of three patterns and raises slightly fewer false alarms overall. Where the
@@ -98,8 +98,8 @@ frightening a healthy person is the thing to minimise.
 
 The GRU is **not** clearly better than plain exponential smoothing at this task and is worse than the Tier 1
 hybrid, so it is kept as a second tier rather than promoted to the main detector. Personalising it (fine-tuning
-only the output head on a user's first four cycles) raises detection substantially — thyroid pattern from 11% to
-67% — but raises false alarms from 0.8% to 18.6% of non-drift cycles, which is why it is not on by default.
+only the output head on a user's first four cycles) raises detection substantially, thyroid pattern from 11% to
+67%, but raises false alarms from 0.8% to 18.6% of non-drift cycles, which is why it is not on by default.
 
 ---
 
@@ -111,7 +111,7 @@ recording its exact wording, where it appears, whether it is measured / cited / 
 a pointer to the evidence, its status, and an owner. A claim cannot ship while its status is `needs work`.
 
 That table also records corrections. One row documents a false-alarm figure that was originally attributed to the
-wrong detector and was corrected on 2026-09-29 — kept visible in the file rather than quietly edited out.
+wrong detector and was corrected on 2026-09-29, and kept visible in the file rather than quietly edited out.
 
 A checker enforces this: `python scripts/check.py --strict` fails the build while any placeholder result remains.
 
@@ -120,7 +120,7 @@ A checker enforces this: `python scripts/check.py --strict` fails the build whil
 ## Multilingual by default
 
 Explanations are generated in **English, Hindi and Marathi**, with audio. This is not a translation layer bolted
-on at the end — the message catalogue is the source of truth, the language linter runs over every locale, and the
+on at the end. The message catalogue is the source of truth, the language linter runs over every locale, and the
 non-diagnostic phrasing must hold in all three languages.
 
 ---
@@ -133,7 +133,7 @@ This is a **research prototype and an academic paper**, not a product, and not a
 - The drift-detection numbers come from a **cycle simulator**, not from real users with labelled conditions.
 - The PCOS result comes from a Kaggle dataset whose population may not generalise to Indian users at large.
 - Anaemia screening from symptoms **does not work** at usable accuracy, and the app does not offer it.
-- The federated-learning component is designed and implemented but **its evaluation has not been run** — there
+- The federated-learning component is designed and implemented but **its evaluation has not been run**, so there
   are no federated numbers in this README because there are no trustworthy federated numbers yet.
 - The on-device latency and memory figures are not yet measured on a representative low-end device.
 
